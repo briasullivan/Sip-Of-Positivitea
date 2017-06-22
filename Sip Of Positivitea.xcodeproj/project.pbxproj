@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		39E98B43DCEB6B0B0092F122 /* Pods_Sip_Of_PositiviteaTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ADD8628ACCFA10F0A7946563 /* Pods_Sip_Of_PositiviteaTests.framework */; };
+		BA51FC6640FF7EE51656DC5A /* Pods_Sip_Of_PositiviteaUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE5A0EB62AAFAE6DC9DC3863 /* Pods_Sip_Of_PositiviteaUITests.framework */; };
+		BC0B60E71EC1651700CF8774 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC0B60E61EC1651700CF8774 /* ChatViewController.swift */; };
 		BC165BCD1EAD6A2E00A229A1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC165BCC1EAD6A2E00A229A1 /* AppDelegate.swift */; };
 		BC165BCF1EAD6A2E00A229A1 /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC165BCE1EAD6A2E00A229A1 /* FirstViewController.swift */; };
 		BC165BD11EAD6A2E00A229A1 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC165BD01EAD6A2E00A229A1 /* SecondViewController.swift */; };
@@ -15,6 +18,17 @@
 		BC165BD91EAD6A2E00A229A1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BC165BD71EAD6A2E00A229A1 /* LaunchScreen.storyboard */; };
 		BC165BE41EAD6A2E00A229A1 /* Sip_Of_PositiviteaTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC165BE31EAD6A2E00A229A1 /* Sip_Of_PositiviteaTests.swift */; };
 		BC165BEF1EAD6A2E00A229A1 /* Sip_Of_PositiviteaUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC165BEE1EAD6A2E00A229A1 /* Sip_Of_PositiviteaUITests.swift */; };
+		BC165BFD1EAD6D3E00A229A1 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = BC165BFC1EAD6D3E00A229A1 /* GoogleService-Info.plist */; };
+		BC165BFF1EAD737000A229A1 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC165BFE1EAD737000A229A1 /* LoginViewController.swift */; };
+		BC165C011EAD73C200A229A1 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC165C001EAD73C200A229A1 /* SignUpViewController.swift */; };
+		BCADA9251EAD96BC00680F1D /* NewMessageTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCADA9241EAD96BC00680F1D /* NewMessageTableViewController.swift */; };
+		BCADA9271EAD96E600680F1D /* MessageListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCADA9261EAD96E600680F1D /* MessageListTableViewController.swift */; };
+		BCADA9291EAD96F800680F1D /* ContactsListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCADA9281EAD96F800680F1D /* ContactsListTableViewController.swift */; };
+		BCADA92C1EAD9B1400680F1D /* Conversation.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCADA92B1EAD9B1400680F1D /* Conversation.swift */; };
+		BCADA92F1EADA1EE00680F1D /* Contact.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCADA92E1EADA1EE00680F1D /* Contact.swift */; };
+		BCADA9311EADA3E800680F1D /* Group.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCADA9301EADA3E800680F1D /* Group.swift */; };
+		BCADA9351EADB75000680F1D /* UserMessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCADA9341EADB75000680F1D /* UserMessageViewController.swift */; };
+		F1AECD3F924B429C43FAE868 /* Pods_Sip_Of_Positivitea.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7ECCEEF981035E3A9D9EF12F /* Pods_Sip_Of_Positivitea.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,6 +49,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2362BB0984A96545FB4AEDC3 /* Pods-Sip Of Positivitea.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Sip Of Positivitea.release.xcconfig"; path = "Pods/Target Support Files/Pods-Sip Of Positivitea/Pods-Sip Of Positivitea.release.xcconfig"; sourceTree = "<group>"; };
+		35512DA3FA575BCEA8C2C23F /* Pods-Sip Of PositiviteaUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Sip Of PositiviteaUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Sip Of PositiviteaUITests/Pods-Sip Of PositiviteaUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		3C11C4B11E7CD6804322CE06 /* Pods-Sip Of Positivitea.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Sip Of Positivitea.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Sip Of Positivitea/Pods-Sip Of Positivitea.debug.xcconfig"; sourceTree = "<group>"; };
+		7ECCEEF981035E3A9D9EF12F /* Pods_Sip_Of_Positivitea.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Sip_Of_Positivitea.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		849D2FD0D62BA38DA821D331 /* Pods-Sip Of PositiviteaTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Sip Of PositiviteaTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Sip Of PositiviteaTests/Pods-Sip Of PositiviteaTests.debug.xcconfig"; sourceTree = "<group>"; };
+		9172E2D5FEAE686595343514 /* Pods-Sip Of PositiviteaUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Sip Of PositiviteaUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Sip Of PositiviteaUITests/Pods-Sip Of PositiviteaUITests.release.xcconfig"; sourceTree = "<group>"; };
+		ADD8628ACCFA10F0A7946563 /* Pods_Sip_Of_PositiviteaTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Sip_Of_PositiviteaTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		BC0B60E61EC1651700CF8774 /* ChatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
 		BC165BC91EAD6A2E00A229A1 /* Sip Of Positivitea.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Sip Of Positivitea.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		BC165BCC1EAD6A2E00A229A1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BC165BCE1EAD6A2E00A229A1 /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
@@ -49,6 +71,18 @@
 		BC165BEA1EAD6A2E00A229A1 /* Sip Of PositiviteaUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Sip Of PositiviteaUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		BC165BEE1EAD6A2E00A229A1 /* Sip_Of_PositiviteaUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sip_Of_PositiviteaUITests.swift; sourceTree = "<group>"; };
 		BC165BF01EAD6A2E00A229A1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BC165BFC1EAD6D3E00A229A1 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		BC165BFE1EAD737000A229A1 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		BC165C001EAD73C200A229A1 /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
+		BCADA9241EAD96BC00680F1D /* NewMessageTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewMessageTableViewController.swift; sourceTree = "<group>"; };
+		BCADA9261EAD96E600680F1D /* MessageListTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageListTableViewController.swift; sourceTree = "<group>"; };
+		BCADA9281EAD96F800680F1D /* ContactsListTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactsListTableViewController.swift; sourceTree = "<group>"; };
+		BCADA92B1EAD9B1400680F1D /* Conversation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Conversation.swift; sourceTree = "<group>"; };
+		BCADA92E1EADA1EE00680F1D /* Contact.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Contact.swift; sourceTree = "<group>"; };
+		BCADA9301EADA3E800680F1D /* Group.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Group.swift; sourceTree = "<group>"; };
+		BCADA9341EADB75000680F1D /* UserMessageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserMessageViewController.swift; sourceTree = "<group>"; };
+		DE5A0EB62AAFAE6DC9DC3863 /* Pods_Sip_Of_PositiviteaUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Sip_Of_PositiviteaUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E792A0D4227E2C062A75F47E /* Pods-Sip Of PositiviteaTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Sip Of PositiviteaTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Sip Of PositiviteaTests/Pods-Sip Of PositiviteaTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +90,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F1AECD3F924B429C43FAE868 /* Pods_Sip_Of_Positivitea.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -63,6 +98,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				39E98B43DCEB6B0B0092F122 /* Pods_Sip_Of_PositiviteaTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -70,12 +106,36 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BA51FC6640FF7EE51656DC5A /* Pods_Sip_Of_PositiviteaUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		89AE1BBC99D465971D6B2337 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				3C11C4B11E7CD6804322CE06 /* Pods-Sip Of Positivitea.debug.xcconfig */,
+				2362BB0984A96545FB4AEDC3 /* Pods-Sip Of Positivitea.release.xcconfig */,
+				849D2FD0D62BA38DA821D331 /* Pods-Sip Of PositiviteaTests.debug.xcconfig */,
+				E792A0D4227E2C062A75F47E /* Pods-Sip Of PositiviteaTests.release.xcconfig */,
+				35512DA3FA575BCEA8C2C23F /* Pods-Sip Of PositiviteaUITests.debug.xcconfig */,
+				9172E2D5FEAE686595343514 /* Pods-Sip Of PositiviteaUITests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		B57F3AD5E16C1CDED46E3C59 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				7ECCEEF981035E3A9D9EF12F /* Pods_Sip_Of_Positivitea.framework */,
+				ADD8628ACCFA10F0A7946563 /* Pods_Sip_Of_PositiviteaTests.framework */,
+				DE5A0EB62AAFAE6DC9DC3863 /* Pods_Sip_Of_PositiviteaUITests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		BC165BC01EAD6A2D00A229A1 = {
 			isa = PBXGroup;
 			children = (
@@ -83,6 +143,8 @@
 				BC165BE21EAD6A2E00A229A1 /* Sip Of PositiviteaTests */,
 				BC165BED1EAD6A2E00A229A1 /* Sip Of PositiviteaUITests */,
 				BC165BCA1EAD6A2E00A229A1 /* Products */,
+				89AE1BBC99D465971D6B2337 /* Pods */,
+				B57F3AD5E16C1CDED46E3C59 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -106,6 +168,9 @@
 				BC165BD51EAD6A2E00A229A1 /* Assets.xcassets */,
 				BC165BD71EAD6A2E00A229A1 /* LaunchScreen.storyboard */,
 				BC165BDA1EAD6A2E00A229A1 /* Info.plist */,
+				BC165BFC1EAD6D3E00A229A1 /* GoogleService-Info.plist */,
+				BCADA92A1EAD9AB000680F1D /* Controllers */,
+				BCADA92D1EAD9BD300680F1D /* Model */,
 			);
 			path = "Sip Of Positivitea";
 			sourceTree = "<group>";
@@ -128,6 +193,30 @@
 			path = "Sip Of PositiviteaUITests";
 			sourceTree = "<group>";
 		};
+		BCADA92A1EAD9AB000680F1D /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				BC165BFE1EAD737000A229A1 /* LoginViewController.swift */,
+				BC165C001EAD73C200A229A1 /* SignUpViewController.swift */,
+				BCADA9241EAD96BC00680F1D /* NewMessageTableViewController.swift */,
+				BCADA9261EAD96E600680F1D /* MessageListTableViewController.swift */,
+				BC0B60E61EC1651700CF8774 /* ChatViewController.swift */,
+				BCADA9281EAD96F800680F1D /* ContactsListTableViewController.swift */,
+				BCADA9341EADB75000680F1D /* UserMessageViewController.swift */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
+		BCADA92D1EAD9BD300680F1D /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				BCADA92B1EAD9B1400680F1D /* Conversation.swift */,
+				BCADA92E1EADA1EE00680F1D /* Contact.swift */,
+				BCADA9301EADA3E800680F1D /* Group.swift */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -135,9 +224,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = BC165BF31EAD6A2E00A229A1 /* Build configuration list for PBXNativeTarget "Sip Of Positivitea" */;
 			buildPhases = (
+				3A4407015E794313C266455B /* [CP] Check Pods Manifest.lock */,
 				BC165BC51EAD6A2D00A229A1 /* Sources */,
 				BC165BC61EAD6A2D00A229A1 /* Frameworks */,
 				BC165BC71EAD6A2D00A229A1 /* Resources */,
+				92D73383E1129B5D570FE589 /* [CP] Embed Pods Frameworks */,
+				2AC0BAACBE2D7919DF0C41CD /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -152,9 +244,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = BC165BF61EAD6A2E00A229A1 /* Build configuration list for PBXNativeTarget "Sip Of PositiviteaTests" */;
 			buildPhases = (
+				B177FCFA3431131B46A5158D /* [CP] Check Pods Manifest.lock */,
 				BC165BDB1EAD6A2E00A229A1 /* Sources */,
 				BC165BDC1EAD6A2E00A229A1 /* Frameworks */,
 				BC165BDD1EAD6A2E00A229A1 /* Resources */,
+				3FC5D6FFB0322C7D4B35A465 /* [CP] Embed Pods Frameworks */,
+				DD550CE5F25F3F77E6251009 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -170,9 +265,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = BC165BF91EAD6A2E00A229A1 /* Build configuration list for PBXNativeTarget "Sip Of PositiviteaUITests" */;
 			buildPhases = (
+				F8335795F3075552CF9B9E9C /* [CP] Check Pods Manifest.lock */,
 				BC165BE61EAD6A2E00A229A1 /* Sources */,
 				BC165BE71EAD6A2E00A229A1 /* Frameworks */,
 				BC165BE81EAD6A2E00A229A1 /* Resources */,
+				2F5F593BB2CF5254021A1438 /* [CP] Embed Pods Frameworks */,
+				5389B4AB0F42F01D89BD201B /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -239,6 +337,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BC165BD91EAD6A2E00A229A1 /* LaunchScreen.storyboard in Resources */,
+				BC165BFD1EAD6D3E00A229A1 /* GoogleService-Info.plist in Resources */,
 				BC165BD61EAD6A2E00A229A1 /* Assets.xcassets in Resources */,
 				BC165BD41EAD6A2E00A229A1 /* Main.storyboard in Resources */,
 			);
@@ -260,14 +359,162 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		2AC0BAACBE2D7919DF0C41CD /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Sip Of Positivitea/Pods-Sip Of Positivitea-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		2F5F593BB2CF5254021A1438 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Sip Of PositiviteaUITests/Pods-Sip Of PositiviteaUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		3A4407015E794313C266455B /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		3FC5D6FFB0322C7D4B35A465 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Sip Of PositiviteaTests/Pods-Sip Of PositiviteaTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		5389B4AB0F42F01D89BD201B /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Sip Of PositiviteaUITests/Pods-Sip Of PositiviteaUITests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		92D73383E1129B5D570FE589 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Sip Of Positivitea/Pods-Sip Of Positivitea-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B177FCFA3431131B46A5158D /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		DD550CE5F25F3F77E6251009 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Sip Of PositiviteaTests/Pods-Sip Of PositiviteaTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F8335795F3075552CF9B9E9C /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		BC165BC51EAD6A2D00A229A1 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BCADA9311EADA3E800680F1D /* Group.swift in Sources */,
+				BC165BFF1EAD737000A229A1 /* LoginViewController.swift in Sources */,
 				BC165BD11EAD6A2E00A229A1 /* SecondViewController.swift in Sources */,
+				BCADA92F1EADA1EE00680F1D /* Contact.swift in Sources */,
+				BCADA9291EAD96F800680F1D /* ContactsListTableViewController.swift in Sources */,
+				BCADA92C1EAD9B1400680F1D /* Conversation.swift in Sources */,
 				BC165BCD1EAD6A2E00A229A1 /* AppDelegate.swift in Sources */,
+				BCADA9271EAD96E600680F1D /* MessageListTableViewController.swift in Sources */,
 				BC165BCF1EAD6A2E00A229A1 /* FirstViewController.swift in Sources */,
+				BC0B60E71EC1651700CF8774 /* ChatViewController.swift in Sources */,
+				BCADA9351EADB75000680F1D /* UserMessageViewController.swift in Sources */,
+				BCADA9251EAD96BC00680F1D /* NewMessageTableViewController.swift in Sources */,
+				BC165C011EAD73C200A229A1 /* SignUpViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -415,6 +662,7 @@
 		};
 		BC165BF41EAD6A2E00A229A1 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3C11C4B11E7CD6804322CE06 /* Pods-Sip Of Positivitea.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 884672A764;
@@ -428,6 +676,7 @@
 		};
 		BC165BF51EAD6A2E00A229A1 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2362BB0984A96545FB4AEDC3 /* Pods-Sip Of Positivitea.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 884672A764;
@@ -441,6 +690,7 @@
 		};
 		BC165BF71EAD6A2E00A229A1 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 849D2FD0D62BA38DA821D331 /* Pods-Sip Of PositiviteaTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -456,6 +706,7 @@
 		};
 		BC165BF81EAD6A2E00A229A1 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E792A0D4227E2C062A75F47E /* Pods-Sip Of PositiviteaTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -471,6 +722,7 @@
 		};
 		BC165BFA1EAD6A2E00A229A1 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 35512DA3FA575BCEA8C2C23F /* Pods-Sip Of PositiviteaUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				DEVELOPMENT_TEAM = 884672A764;
@@ -485,6 +737,7 @@
 		};
 		BC165BFB1EAD6A2E00A229A1 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9172E2D5FEAE686595343514 /* Pods-Sip Of PositiviteaUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				DEVELOPMENT_TEAM = 884672A764;
@@ -516,6 +769,7 @@
 				BC165BF51EAD6A2E00A229A1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		BC165BF61EAD6A2E00A229A1 /* Build configuration list for PBXNativeTarget "Sip Of PositiviteaTests" */ = {
 			isa = XCConfigurationList;
@@ -524,6 +778,7 @@
 				BC165BF81EAD6A2E00A229A1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		BC165BF91EAD6A2E00A229A1 /* Build configuration list for PBXNativeTarget "Sip Of PositiviteaUITests" */ = {
 			isa = XCConfigurationList;
@@ -532,6 +787,7 @@
 				BC165BFB1EAD6A2E00A229A1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
