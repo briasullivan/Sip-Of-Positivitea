@@ -14,9 +14,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+        /*UINavigationBar.appearance().barTintColor = UIColor(red: 76/255, green: 173/255, blue: 225/255, alpha: 1)
+        UINavigationBar.appearance().tintColor = UIColor.white
+        UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName:UIColor.white]
+        UITabBar.appearance().barTintColor = UIColor(red: 76/255, green: 173/255, blue: 225/255, alpha: 1)
+        UITabBar.appearance().tintColor = .white */
+        UINavigationBar.appearance().titleTextAttributes = [ NSFontAttributeName: UIFont(name: "Avenir Next", size: 20)!]
+        UINavigationBar.appearance().tintColor = UIColor.darkGray
         FIRApp.configure()
+        FIRDatabase.database().persistenceEnabled = true
+
         return true
     }
 
@@ -41,7 +49,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
-
-
+    
 }
 

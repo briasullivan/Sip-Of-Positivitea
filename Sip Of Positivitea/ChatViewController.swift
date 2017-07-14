@@ -12,6 +12,8 @@ import FirebaseDatabase
 import FirebaseStorage
 import JSQMessagesViewController
 import Photos
+import Foundation
+import SystemConfiguration
 
 class ChatViewController: JSQMessagesViewController {
     
@@ -20,7 +22,6 @@ class ChatViewController: JSQMessagesViewController {
         didSet {
             title = conversation?.first_name
         }
-        
     }
     
     private lazy var messageRef: FIRDatabaseReference = self.conversationRef!.child("messages")
@@ -40,7 +41,6 @@ class ChatViewController: JSQMessagesViewController {
         super.viewDidLoad()
         self.senderId = FIRAuth.auth()?.currentUser?.uid
         
-        title = "Allynn"
         let rightButtonItem = UIBarButtonItem.init(
             title: "Sign Out",
             style: .plain,
@@ -55,13 +55,40 @@ class ChatViewController: JSQMessagesViewController {
         if (self.conversationRef != nil) {
             observeMessages()
         }
+        
+        if title == nil {
+            title = "Chat with Allynn"
+        }
+        print("title = " + title!)
     }
+    
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
 
         // animates the receiving of a new message on the view
         finishReceivingMessage()
+    }
+    
+    func isInternetAvailable() -> Bool
+    {
+        var zeroAddress = sockaddr_in()
+        zeroAddress.sin_len = UInt8(MemoryLayout.size(ofValue: zeroAddress))
+        zeroAddress.sin_family = sa_family_t(AF_INET)
+        
+        let defaultRouteReachability = withUnsafePointer(to: &zeroAddress) {
+            $0.withMemoryRebound(to: sockaddr.self, capacity: 1) {zeroSockAddress in
+                SCNetworkReachabilityCreateWithAddress(nil, zeroSockAddress)
+            }
+        }
+        
+        var flags = SCNetworkReachabilityFlags()
+        if !SCNetworkReachabilityGetFlags(defaultRouteReachability!, &flags) {
+            return false
+        }
+        let isReachable = flags.contains(.reachable)
+        let needsConnection = flags.contains(.connectionRequired)
+        return (isReachable && !needsConnection)
     }
     
     deinit {
@@ -212,9 +239,17 @@ class ChatViewController: JSQMessagesViewController {
      */
     private func observeMessages() {
         messageRef = conversationRef!.child("messages")
+        messageRef.keepSynced(true)
         // 1.
         let messageQuery = messageRef.queryLimited(toLast:25)
-        
+        let connectedRef = FIRDatabase.database().reference(withPath: ".info/connected")
+        connectedRef.observe(.value, with: { snapshot in
+            if snapshot.value as? Bool ?? false {
+                print("Connected")
+            } else {
+                print("Not connected")
+            }
+        })
         // 2. We can use the observe method to listen for new
         // messages being written to the Firebase DB
         newMessageRefHandle = messageQuery.observe(.childAdded, with: { (snapshot) -> Void in
@@ -228,7 +263,8 @@ class ChatViewController: JSQMessagesViewController {
             let text = messageData["text"], (text as! String).characters.count > 0 {
                 // 4
                 self.addMessage(withId: id, name: (name as! String), text: text as! String)
-                
+                //JSQSystemSoundPlayer.jsq_playMessageReceivedSound()
+
                 // 5
                 self.finishReceivingMessage()
             }
@@ -237,6 +273,7 @@ class ChatViewController: JSQMessagesViewController {
                 if let mediaItem = JSQPhotoMediaItem(maskAsOutgoing: id == self.senderId) {
                     // 3
                     self.addPhotoMessage(withId: id, key: snapshot.key, mediaItem: mediaItem)
+                    //JSQSystemSoundPlayer.jsq_playMessageReceivedSound()
                     // 4
                     if photoURL.hasPrefix("gs://") {
                         self.fetchImageDataAtURL(photoURL as! String, forMediaItem: mediaItem, clearsPhotoMessageMapOnSuccessForKey: nil)
@@ -283,11 +320,9 @@ class ChatViewController: JSQMessagesViewController {
     override func didPressAccessoryButton(_ sender: UIButton) {
         let picker = UIImagePickerController()
         picker.delegate = self
-        if (UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.camera)) {
-            picker.sourceType = UIImagePickerControllerSourceType.camera
-        } else {
-            picker.sourceType = UIImagePickerControllerSourceType.photoLibrary
-        }
+        picker.allowsEditing = true
+        picker.sourceType = UIImagePickerControllerSourceType.photoLibrary
+        
         
         present(picker, animated: true, completion:nil)
     }
@@ -301,23 +336,32 @@ extension ChatViewController: UIImagePickerControllerDelegate, UINavigationContr
         picker.dismiss(animated: true, completion:nil)
         
         // 1
-        if let photoReferenceUrl = info[UIImagePickerControllerReferenceURL] as? URL {
+        if (false){
             // Handle picking a Photo from the Photo Library
             // 2
+            let photoReferenceUrl = info[UIImagePickerControllerReferenceURL] as! URL
+            let assetURL = URL(fileURLWithPath: photoReferenceUrl.absoluteString)
+
             let assets = PHAsset.fetchAssets(withALAssetURLs: [photoReferenceUrl], options: nil)
             let asset = assets.firstObject
             
             // 3
             if let key = sendPhotoMessage() {
-                // 4
-                asset?.requestContentEditingInput(with: nil, completionHandler: { (contentEditingInput, info) in
-                    let imageFileURL = contentEditingInput?.fullSizeImageURL
+
+                
+                // 5
+                let path = "\(FIRAuth.auth()?.currentUser?.uid)/\(Int(Date.timeIntervalSinceReferenceDate * 1000))/\(photoReferenceUrl.lastPathComponent)"
+                do {
+                    let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
                     
-                    // 5
-                    let path = "\(FIRAuth.auth()?.currentUser?.uid)/\(Int(Date.timeIntervalSinceReferenceDate * 1000))/\(photoReferenceUrl.lastPathComponent)"
+                    let fileURL = try documentsURL.appendingPathComponent(path)
+                    
+                    let image = info[UIImagePickerControllerOriginalImage]
+                    try UIImageJPEGRepresentation(image as! UIImage,1.0)?.write(to: fileURL, options: [])
+                    
                     
                     // 6
-                    self.storageRef.child(path).putFile(imageFileURL!, metadata: nil) { (metadata, error) in
+                    self.storageRef.child(path).putFile(fileURL, metadata: nil) { (metadata, error) in
                         if let error = error {
                             print("Error uploading photo: \(error.localizedDescription)")
                             return
@@ -325,6 +369,13 @@ extension ChatViewController: UIImagePickerControllerDelegate, UINavigationContr
                         // 7
                         self.setImageURL(self.storageRef.child((metadata?.path)!).description, forPhotoMessageWithKey: key)
                     }
+                } catch {
+                    
+                    
+                }
+                // 4
+                asset?.requestContentEditingInput(with: nil, completionHandler: { (contentEditingInput, info) in
+
                 })
             }
         } else {

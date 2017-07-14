@@ -2,6 +2,9 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:Sip Of Positivitea/NewMessageViewController.swift">
+   </FileRef>
+   <FileRef
       location = "group:Sip Of Positivitea.xcodeproj">
    </FileRef>
    <FileRef

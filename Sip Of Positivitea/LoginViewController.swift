@@ -23,15 +23,7 @@ class LoginViewController: UIViewController {
 
         
         //get the currently signed-in user by using the currentUser property. If a user isn't signed in, currentUser is nil:
-        if let curUser = FIRAuth.auth()?.currentUser {
-            // User is signed in.
-            print("start current user: " + curUser.email! )
-            self.loginToApp(user: curUser)
 
-        } else {
-            // No current user is signed in.
-            print("Currently, no user is signed in.")
-        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -42,6 +34,7 @@ class LoginViewController: UIViewController {
     @IBAction func loginAction(_ sender: AnyObject) {
         let email = self.emailTextField.text
         let phone_number = self.phoneNumberTextField.text
+        
         if email == "" || phone_number == "" {
             
             //Alert to tell the user that there was an error because they didn't fill anything in the textfields because they didn't fill anything in
@@ -54,17 +47,33 @@ class LoginViewController: UIViewController {
             self.present(alertController, animated: true, completion: nil)
             
         } else {
-            
-            FIRAuth.auth()?.signIn(withEmail: email!, password: phone_number!) { (user, error) in
+            let loadingHolderFrame = CGRect(x:self.view.frame.size.width / 2 - 50, y: self.view.frame.size.height / 2 - 50, width: 100, height: 100)
+            let loadingViewFrame = CGRect(x: 0, y: 0
+                , width: 100, height: 100)
+            let loadingView = MOOverWatchLoadingView(frame: loadingViewFrame, autoStartAnimation: true, color: UIColor.lightGray)
+            let loadingHolderView = UIView(frame: loadingHolderFrame)
+            loadingHolderView.addSubview(loadingView)
+            let blurEffect = UIBlurEffect(style: .light)
+            let blurView = UIVisualEffectView(effect: blurEffect)
+            blurView.frame = self.view.bounds
+            blurView.alpha = 0.7;
+            self.view.addSubview(blurView)
+            self.view.addSubview(loadingHolderView)
+            let numbersOnly = String(phone_number!.characters.filter { "0123456789".characters.contains($0) })
+
+            FIRAuth.auth()?.signIn(withEmail: email!, password: numbersOnly) { (user, error) in
                 
                 if error == nil {
                     
                     //Print into the console if successfully logged in
                     print("You have successfully logged in")
+                    blurView.removeFromSuperview()
+                    loadingHolderView.removeFromSuperview()
                    self.loginToApp(user: user!)
                     
                 } else {
-                    
+                    blurView.removeFromSuperview()
+                    loadingHolderView.removeFromSuperview()
                     //Tells the user that there is an error and then gets firebase to tell them the error
                     let alertController = UIAlertController(title: "Error", message: error?.localizedDescription, preferredStyle: .alert)
                     
@@ -98,7 +107,7 @@ class LoginViewController: UIViewController {
         if segue.identifier == "LoginToApp" {
             let navController = segue.destination as! UINavigationController
             let chatVc = navController.viewControllers[0] as! ChatViewController;
-            chatVc.senderDisplayName = "Allynn"
+            chatVc.senderDisplayName = "Chat with Allynn!"
             //chatVc.conversationRef = convoReference
             
             let phone_number = sender as! String
@@ -112,6 +121,10 @@ class LoginViewController: UIViewController {
                 chatVc.viewDidLoad()
             })
         }
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
     }
     /*
     // MARK: - Navigation

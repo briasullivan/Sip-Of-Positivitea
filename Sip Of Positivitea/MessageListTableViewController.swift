@@ -21,7 +21,7 @@ class MessageListTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Sign Out", style: .plain, target: self, action: #selector(signOut))
-        title = "Sip of Positivitea"
+        title = "Messages"
         observeConversations()
 
         // Uncomment the following line to preserve selection between presentations

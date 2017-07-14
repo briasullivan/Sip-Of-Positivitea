@@ -31,7 +31,24 @@ class SignUpViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    @IBAction func cancelCreate(_ sender: AnyObject) {
+        dismiss(animated: true, completion: nil)
+    }
+    
     @IBAction func createAccountAction(_ sender: AnyObject) {
+        let loadingHolderFrame = CGRect(x:self.view.frame.size.width / 2 - 50, y: self.view.frame.size.height / 2 - 50, width: 100, height: 100)
+        let loadingViewFrame = CGRect(x: 0, y: 0
+            , width: 100, height: 100)
+        let loadingView = MOOverWatchLoadingView(frame: loadingViewFrame, autoStartAnimation: true, color: UIColor.white)
+        var loadingHolderView = UIView(frame: loadingHolderFrame)
+        loadingHolderView.addSubview(loadingView)
+        let blurEffect = UIBlurEffect(style: .light)
+        let blurView = UIVisualEffectView(effect: blurEffect)
+        blurView.frame = self.view.bounds
+        blurView.alpha = 0.7;
+        self.view.addSubview(blurView)
+        self.view.addSubview(loadingHolderView)
+
         let email = emailTextField.text
         let phone_number = phoneNumberTextField.text
         let first_name = firstNameTextField.text
@@ -62,25 +79,28 @@ class SignUpViewController: UIViewController {
             
             let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
             alertController.addAction(defaultAction)
-            
+            blurView.removeFromSuperview()
+            loadingHolderView.removeFromSuperview()
             present(alertController, animated: true, completion: nil)
             
         } else {
-            FIRAuth.auth()?.createUser(withEmail: emailTextField.text!, password: phoneNumberTextField.text!) { (user, error) in
+            let numbersOnly = String(phone_number!.characters.filter { "0123456789".characters.contains($0) })
+            FIRAuth.auth()?.createUser(withEmail: emailTextField.text!, password: numbersOnly) { (user, error) in
                 
                 if error == nil {
                     print("You have successfully signed up")
 
                     let defaults = UserDefaults.standard
                     defaults.set(email, forKey:"user_email")
-                    defaults.set(phone_number, forKey:"user_phonenumber")
+                    defaults.set(numbersOnly, forKey:"user_phonenumber")
                     defaults.set(first_name, forKey:"user_firstname")
                     defaults.set(last_name, forKey:"user_lastname")
+                    
                     let uid = user?.uid
                     let userReference = self.usersRef.child(uid!)
                     let isAllynn = (phone_number == "4044443833" && email == "allynntay@yahoo.com") ? "true" : "false"
                     let values = ["email":email,
-                                  "phone_number": phone_number,
+                                  "phone_number": numbersOnly,
                                   "first_name": first_name,
                                   "last_name": last_name,
                                   "is_allynn": isAllynn]
@@ -98,10 +118,10 @@ class SignUpViewController: UIViewController {
                         if isAllynn == "true" {
                             self.performSegue(withIdentifier: "AllynnAccountCreated", sender: nil)
                         } else {
-                            let conversation = Conversation(id: "Allynn"+phone_number!,
+                            let conversation = Conversation(id: "Allynn"+numbersOnly,
                                                             first_name: first_name!,
                                                             last_name: last_name!,
-                                                            phone_number: phone_number!,
+                                                            phone_number: numbersOnly,
                                                             last_received_message: Date(timeIntervalSince1970: 0 / 1000))
                                 
                             self.performSegue(withIdentifier: "AccountCreated", sender: conversation)
@@ -115,6 +135,8 @@ class SignUpViewController: UIViewController {
                     
                     self.present(alertController, animated: true, completion: nil)
                 }
+                blurView.removeFromSuperview()
+                loadingHolderView.removeFromSuperview()
             }
         }
     }
@@ -127,7 +149,7 @@ class SignUpViewController: UIViewController {
             
             let chatVc = segue.destination.childViewControllers[0] as! ChatViewController
             
-            chatVc.senderDisplayName = "Allynn"
+            chatVc.senderDisplayName = "Chat with Allynn!"
             chatVc.conversation = conversation
             chatVc.conversationRef = conversationsRef.child(conversation.id)
         }
@@ -142,6 +164,10 @@ class SignUpViewController: UIViewController {
             "last_received_message": 0,
         ] as [String : Any]
         newConversationRef.setValue(conversationItem) // 4
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
     }
     /*
     // MARK: - Navigation
