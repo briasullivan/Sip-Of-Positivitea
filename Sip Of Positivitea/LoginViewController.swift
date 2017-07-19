@@ -15,6 +15,7 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var phoneNumberTextField: UITextField!
     private lazy var usersRef: FIRDatabaseReference = FIRDatabase.database().reference().child("users")
+    private lazy var allynnRef: FIRDatabaseReference = FIRDatabase.database().reference().child("allynn")
     private lazy var conversationsRef: FIRDatabaseReference = FIRDatabase.database().reference().child("conversations")
     private var userRefHandle: FIRDatabaseHandle?
     
@@ -93,7 +94,11 @@ class LoginViewController: UIViewController {
             let value = snapshot.value as? NSDictionary
             let is_allynn = value?["is_allynn"] as? String ?? ""
             let phone_number = value?["phone_number"] as? String ?? ""
+            let defaults = UserDefaults.standard
+            defaults.set(is_allynn, forKey: "is_allynn")
+            defaults.synchronize()
             if is_allynn == "true" {
+                self.allynnRef.child("allynn_info").child("user_id").setValue(uid)
                 self.performSegue(withIdentifier: "AllynnLoginToApp", sender: nil)
             } else {
                 self.performSegue(withIdentifier: "LoginToApp", sender:phone_number)
@@ -118,6 +123,7 @@ class LoginViewController: UIViewController {
 
                 chatVc.senderDisplayName = first_name
                 chatVc.conversationRef = convoReference
+                chatVc.isAllynn = "false"
                 chatVc.viewDidLoad()
             })
         }

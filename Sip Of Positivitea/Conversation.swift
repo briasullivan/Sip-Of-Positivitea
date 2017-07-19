@@ -13,12 +13,14 @@ internal class Conversation {
     internal let last_name: String
     internal let phone_number: String
     internal let last_received_message: Date
+    internal let receiver_user_id: String
     
-    init(id: String, first_name: String, last_name: String, phone_number: String, last_received_message: Date) {
+    init(id: String, first_name: String, last_name: String, phone_number: String, last_received_message: Date, receiver_user_id: String) {
         self.id = id
         self.first_name = first_name
         self.last_name = last_name
         self.phone_number = phone_number
         self.last_received_message = last_received_message
+        self.receiver_user_id = receiver_user_id
     }
 }

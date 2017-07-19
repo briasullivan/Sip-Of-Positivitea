@@ -4,6 +4,13 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>OneSignalNotificationServiceExtension.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+			<key>orderHint</key>
+			<integer>8</integer>
+		</dict>
 		<key>Sip Of Positivitea.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
@@ -23,6 +30,21 @@
 			<true/>
 		</dict>
 		<key>BC165BE91EAD6A2E00A229A1</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>BC32403A1F19D81E00EA3EEB</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>BC32404A1F19D84500EA3EEB</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>BC3240591F19D89000EA3EEB</key>
 		<dict>
 			<key>primary</key>
 			<true/>

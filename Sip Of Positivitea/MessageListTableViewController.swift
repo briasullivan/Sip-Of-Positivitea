@@ -12,15 +12,16 @@ import FirebaseDatabase
 
 class MessageListTableViewController: UITableViewController {
     var senderDisplayName: String?
+    private var conversationsUnsortedData : [String:Conversation] = [:]
     private var conversations : [Conversation] = []
     private lazy var conversationsRef: FIRDatabaseReference = FIRDatabase.database().reference().child("conversations")
     private var conversationsRefHandle: FIRDatabaseHandle?
+    private var conversationsChangedHandle: FIRDatabaseHandle?
 
     private var isAllynn : Bool = false;
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Sign Out", style: .plain, target: self, action: #selector(signOut))
         title = "Messages"
         observeConversations()
 
@@ -64,6 +65,9 @@ class MessageListTableViewController: UITableViewController {
 
         let convo = conversations[(indexPath as NSIndexPath).row]
         cell.textLabel?.text = convo.first_name + " " + convo.last_name
+        let formatter = DateFormatter()
+        formatter.dateFormat = "MM/dd/yyyy hh:mm a"
+        cell.detailTextLabel?.text = formatter.string(from:convo.last_received_message)
         return cell
     }
     
@@ -78,13 +82,16 @@ class MessageListTableViewController: UITableViewController {
         if let conversation = sender as? Conversation {
             let chatVc = segue.destination as! ChatViewController
             
-            chatVc.senderDisplayName = conversation.first_name
+            chatVc.senderDisplayName = "Allynn"
             chatVc.conversation = conversation
             chatVc.conversationRef = conversationsRef.child(conversation.id)
+            chatVc.receiver_user_id = conversation.receiver_user_id
+            chatVc.isAllynn = "true"
         }
     }
     
     private func observeConversations() {
+        
         conversationsRefHandle = conversationsRef.observe(.childAdded, with: { (snapshot) -> Void in
             let conversationData = snapshot.value as! Dictionary<String, AnyObject>
             let id = snapshot.key;
@@ -92,31 +99,48 @@ class MessageListTableViewController: UITableViewController {
             let last_name = conversationData["last_name"] as! String
             let phone_number = conversationData["phone_number"] as! String
             let date = conversationData["last_received_message"] as! TimeInterval
+            let receiver_user_id = conversationData["receiver_user_id"] as? String ?? ""
             
             if first_name.characters.count > 0 {
-                self.conversations.append(
-                    Conversation(id: id,
-                                 first_name: first_name,
-                                 last_name: last_name,
-                                 phone_number: phone_number,
-                                 last_received_message: Date(timeIntervalSince1970: date / 1000)))
+                self.conversationsUnsortedData[phone_number] = Conversation(id: id,
+                                                                       first_name: first_name,
+                                                                       last_name: last_name,
+                                                                       phone_number: phone_number,
+                                                                       last_received_message: Date(timeIntervalSince1970: date / 1000),
+                                                                       receiver_user_id: receiver_user_id)
+                self.conversations.append(self.conversationsUnsortedData[phone_number]!)
+                self.conversations.sort {
+                    $0.last_received_message.compare($1.last_received_message) == ComparisonResult.orderedDescending
+                }
                 self.tableView.reloadData()
             } else {
                 print("Error! Could not decode conversation data")
             }
         })
+        
+        conversationsChangedHandle = conversationsRef.observe(.childChanged, with: {(snapshot) -> Void in
+            let conversationData = snapshot.value as! Dictionary<String, AnyObject>
+            let id = snapshot.key;
+            let first_name = conversationData["first_name"] as! String
+            let last_name = conversationData["last_name"] as! String
+            let phone_number = conversationData["phone_number"] as! String
+            let date = conversationData["last_received_message"] as! TimeInterval
+            let receiver_user_id = conversationData["receiver_user_id"] as! String
+            self.conversationsUnsortedData[phone_number] = Conversation(id: id,
+                                                                        first_name: first_name,
+                                                                        last_name: last_name,
+                                                                        phone_number: phone_number,
+                                                                        last_received_message: Date(timeIntervalSince1970: date / 1000),
+                                                                        receiver_user_id:receiver_user_id)
+            self.conversations.removeAll()
+            self.conversations.append(contentsOf: self.conversationsUnsortedData.values)
+            self.conversations.sort {
+                $0.last_received_message.compare($1.last_received_message) == ComparisonResult.orderedDescending
+            }
+            self.tableView.reloadData()
+        })
     }
     
-    func signOut() {
-        do {
-            try FIRAuth.auth()!.signOut()
-            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            let loginViewController = storyboard.instantiateViewController(withIdentifier: "login")
-            present(loginViewController, animated: true, completion: nil)
-        } catch let signOutError as NSError {
-            print ("Error signing out: %@", signOutError)
-        }
-    }
 
     /*
     // Override to support conditional editing of the table view.

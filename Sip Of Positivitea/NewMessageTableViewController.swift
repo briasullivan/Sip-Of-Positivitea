@@ -9,9 +9,18 @@
 import UIKit
 
 class NewMessageTableViewController: UITableViewController {
-
+    private var newMassMessage:MassMessage!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        let rightButtonItem = UIBarButtonItem.init(
+            title: "Next",
+            style: .plain,
+            target: self,
+            action: #selector(NewMessageTableViewController.nextPressed(sender:))
+        )
+        self.navigationItem.rightBarButtonItem = rightButtonItem
+        self.navigationItem.rightBarButtonItem?.isEnabled = false
         tableView.reloadData()
         //tableView.estimatedRowHeight = 150
         //tableView.rowHeight = UITableViewAutomaticDimension
@@ -22,6 +31,12 @@ class NewMessageTableViewController: UITableViewController {
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
 
+    func nextPressed(sender: UIBarButtonItem) {
+        let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
+        let chooseVC = storyboard.instantiateViewController(withIdentifier: "ChooseSend") as! ChooseSendTableViewController
+        chooseVC.newMassMessage = newMassMessage
+        self.show(chooseVC, sender: self)
+    }
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 100
     }
@@ -48,6 +63,11 @@ class NewMessageTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if (indexPath.section == 0) {
             var cell = tableView.dequeueReusableCell(withIdentifier: "NewMessageCell", for: indexPath)
+            if (newMassMessage != nil) {
+                cell.textLabel?.text = newMassMessage.messageContent
+            } else {
+                cell.textLabel?.text = "Compose a new message"
+            }
             return cell
         } else {
             var cell = tableView.dequeueReusableCell(withIdentifier: "AddPhotosCell", for: indexPath)
@@ -57,11 +77,27 @@ class NewMessageTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if (indexPath.section == 0) {
-            self.performSegue(withIdentifier: "ShowComposeMessage", sender: nil)
-
+            //self.performSegue(withIdentifier: "ShowComposeMessage", sender: nil)
+            let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
+            let composeVC = storyboard.instantiateViewController(withIdentifier: "Compose") as! ComposeViewController
+            composeVC.newMassMessage = newMassMessage
+            composeVC.doneHandler = {(inputTextView:UITextView?)-> Void in
+                self.didSetMassMessage(input: inputTextView)
+            }
+            self.show(composeVC, sender: self)
         } else if (indexPath.section == 1) {
-            self.performSegue(withIdentifier: "ShowAdd", sender: <#T##Any?#>)
         }
+    }
+    
+    func didSetMassMessage(input: UITextView?) {
+        if (input != nil && (input?.text.characters.count)! > 0) {
+            newMassMessage = MassMessage(messageContent: (input?.text)!)
+            self.navigationItem.rightBarButtonItem?.isEnabled = true
+        } else {
+            newMassMessage = nil
+            self.navigationItem.rightBarButtonItem?.isEnabled = false
+        }
+        tableView.reloadData()
     }
     /*
     // Override to support conditional editing of the table view.

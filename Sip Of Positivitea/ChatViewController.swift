@@ -14,6 +14,7 @@ import JSQMessagesViewController
 import Photos
 import Foundation
 import SystemConfiguration
+import OneSignal
 
 class ChatViewController: JSQMessagesViewController {
     
@@ -23,8 +24,12 @@ class ChatViewController: JSQMessagesViewController {
             title = conversation?.first_name
         }
     }
+    var isAllynn : String? = "true"
+    var receiver_user_id: String?
     
     private lazy var messageRef: FIRDatabaseReference = self.conversationRef!.child("messages")
+    private lazy var usersRef: FIRDatabaseReference = FIRDatabase.database().reference().child("users")
+
     private var newMessageRefHandle: FIRDatabaseHandle?
     lazy var storageRef: FIRStorageReference = FIRStorage.storage().reference(forURL: "gs://sip-of-positivitea-e3b78.appspot.com")
     private var photoMessageMap = [String: JSQPhotoMediaItem]()
@@ -39,7 +44,30 @@ class ChatViewController: JSQMessagesViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        // Recommend moving the below line to prompt for push after informing the user about
+        //   how your app will use them.
         self.senderId = FIRAuth.auth()?.currentUser?.uid
+        
+        OneSignal.promptForPushNotifications(userResponse: { accepted in
+            print("User accepted notifications: \(accepted)")
+            OneSignal.setSubscription(true)
+            let status: OSPermissionSubscriptionState = OneSignal.getPermissionSubscriptionState()
+            
+            let hasPrompted = status.permissionStatus.hasPrompted
+            print("hasPrompted = \(hasPrompted)")
+            let userStatus = status.permissionStatus.status
+            print("userStatus = \(userStatus)")
+            
+            let isSubscribed = status.subscriptionStatus.subscribed
+            print("isSubscribed = \(isSubscribed)")
+            let userSubscriptionSetting = status.subscriptionStatus.userSubscriptionSetting
+            print("userSubscriptionSetting = \(userSubscriptionSetting)")
+            let userID = status.subscriptionStatus.userId
+            print("userID = \(userID)")
+            self.usersRef.child(self.senderId).child("notification_user_id").setValue(userID)
+            
+        })
+        
         
         let rightButtonItem = UIBarButtonItem.init(
             title: "Sign Out",
@@ -47,6 +75,7 @@ class ChatViewController: JSQMessagesViewController {
             target: self,
             action: #selector(ChatViewController.signOutPressed(sender:))
         )
+        
         
         self.navigationItem.rightBarButtonItem = rightButtonItem
         
@@ -60,6 +89,9 @@ class ChatViewController: JSQMessagesViewController {
             title = "Chat with Allynn"
         }
         print("title = " + title!)
+        
+
+
     }
     
 
@@ -213,7 +245,23 @@ class ChatViewController: JSQMessagesViewController {
         itemRef.setValue(messageItem) // 3
         
         JSQSystemSoundPlayer.jsq_playMessageSentSound() // 4
-        
+        if (isAllynn == "true" && (self.receiver_user_id != nil)) {
+            self.usersRef.child(self.receiver_user_id!).observeSingleEvent(of: .value, with: { (snapshot) in
+                // Get user value
+                let value = snapshot.value as? NSDictionary
+                if let userId = value?["notification_user_id"] {
+                    OneSignal.postNotification(["headings": ["en":senderDisplayName!], "contents": ["en":text!], "include_player_ids": [(userId as! String) ]])
+                }
+                
+                // ...
+            }) { (error) in
+                print(error.localizedDescription)
+            }
+
+
+        } else {
+            
+        }
         finishSendingMessage() // 5
     }
     
@@ -265,6 +313,7 @@ class ChatViewController: JSQMessagesViewController {
                 self.addMessage(withId: id, name: (name as! String), text: text as! String)
                 //JSQSystemSoundPlayer.jsq_playMessageReceivedSound()
 
+                self.conversationRef?.child("last_received_message").setValue(messageData["date"])
                 // 5
                 self.finishReceivingMessage()
             }

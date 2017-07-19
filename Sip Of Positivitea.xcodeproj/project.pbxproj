@@ -18,13 +18,17 @@
 		BC165BD91EAD6A2E00A229A1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BC165BD71EAD6A2E00A229A1 /* LaunchScreen.storyboard */; };
 		BC165BE41EAD6A2E00A229A1 /* Sip_Of_PositiviteaTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC165BE31EAD6A2E00A229A1 /* Sip_Of_PositiviteaTests.swift */; };
 		BC165BEF1EAD6A2E00A229A1 /* Sip_Of_PositiviteaUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC165BEE1EAD6A2E00A229A1 /* Sip_Of_PositiviteaUITests.swift */; };
-		BC165BFD1EAD6D3E00A229A1 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = BC165BFC1EAD6D3E00A229A1 /* GoogleService-Info.plist */; };
 		BC165BFF1EAD737000A229A1 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC165BFE1EAD737000A229A1 /* LoginViewController.swift */; };
 		BC165C011EAD73C200A229A1 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC165C001EAD73C200A229A1 /* SignUpViewController.swift */; };
 		BC3060C81F04BCDD00116E30 /* Sip_of_Positivitea_FINAL_2_Small-2.png in Resources */ = {isa = PBXBuildFile; fileRef = BC3060C71F04BCDD00116E30 /* Sip_of_Positivitea_FINAL_2_Small-2.png */; };
 		BC3240291F117D3A00EA3EEB /* MOOverWatchLoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC3240281F117D3A00EA3EEB /* MOOverWatchLoadingView.swift */; };
 		BC32402B1F11980700EA3EEB /* NewMessageTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC32402A1F11980700EA3EEB /* NewMessageTableViewController.swift */; };
 		BC32402D1F15E70B00EA3EEB /* LaunchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC32402C1F15E70B00EA3EEB /* LaunchViewController.swift */; };
+		BC32402F1F195B5D00EA3EEB /* MassMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC32402E1F195B5D00EA3EEB /* MassMessage.swift */; };
+		BC3240311F195D3F00EA3EEB /* ComposeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC3240301F195D3F00EA3EEB /* ComposeViewController.swift */; };
+		BC3240331F1965E700EA3EEB /* ChooseSendTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC3240321F1965E700EA3EEB /* ChooseSendTableViewController.swift */; };
+		BC3240351F19C83F00EA3EEB /* ContactTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC3240341F19C83F00EA3EEB /* ContactTableViewController.swift */; };
+		BC3240671F1D3C3000EA3EEB /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = BC3240661F1D3C3000EA3EEB /* GoogleService-Info.plist */; };
 		BCADA9271EAD96E600680F1D /* MessageListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCADA9261EAD96E600680F1D /* MessageListTableViewController.swift */; };
 		BCADA9291EAD96F800680F1D /* ContactsListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCADA9281EAD96F800680F1D /* ContactsListTableViewController.swift */; };
 		BCADA92C1EAD9B1400680F1D /* Conversation.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCADA92B1EAD9B1400680F1D /* Conversation.swift */; };
@@ -51,13 +55,29 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		BC3240461F19D81F00EA3EEB /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		16A0978A10050657FC39F719 /* Pods_Sip_Of_Positivitea_OneSignalNotificationServiceExtension.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Sip_Of_Positivitea_OneSignalNotificationServiceExtension.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2362BB0984A96545FB4AEDC3 /* Pods-Sip Of Positivitea.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Sip Of Positivitea.release.xcconfig"; path = "Pods/Target Support Files/Pods-Sip Of Positivitea/Pods-Sip Of Positivitea.release.xcconfig"; sourceTree = "<group>"; };
 		35512DA3FA575BCEA8C2C23F /* Pods-Sip Of PositiviteaUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Sip Of PositiviteaUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Sip Of PositiviteaUITests/Pods-Sip Of PositiviteaUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		3C11C4B11E7CD6804322CE06 /* Pods-Sip Of Positivitea.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Sip Of Positivitea.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Sip Of Positivitea/Pods-Sip Of Positivitea.debug.xcconfig"; sourceTree = "<group>"; };
 		7ECCEEF981035E3A9D9EF12F /* Pods_Sip_Of_Positivitea.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Sip_Of_Positivitea.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		849D2FD0D62BA38DA821D331 /* Pods-Sip Of PositiviteaTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Sip Of PositiviteaTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Sip Of PositiviteaTests/Pods-Sip Of PositiviteaTests.debug.xcconfig"; sourceTree = "<group>"; };
 		9172E2D5FEAE686595343514 /* Pods-Sip Of PositiviteaUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Sip Of PositiviteaUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Sip Of PositiviteaUITests/Pods-Sip Of PositiviteaUITests.release.xcconfig"; sourceTree = "<group>"; };
+		9257C171660502E57AA43920 /* Pods-Sip Of Positivitea-OneSignalNotificationServiceExtension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Sip Of Positivitea-OneSignalNotificationServiceExtension.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Sip Of Positivitea-OneSignalNotificationServiceExtension/Pods-Sip Of Positivitea-OneSignalNotificationServiceExtension.debug.xcconfig"; sourceTree = "<group>"; };
+		9FE01AC4ACBBA1EB5C84C336 /* Pods-Sip Of Positivitea-OneSignalNotificationServiceExtension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Sip Of Positivitea-OneSignalNotificationServiceExtension.release.xcconfig"; path = "Pods/Target Support Files/Pods-Sip Of Positivitea-OneSignalNotificationServiceExtension/Pods-Sip Of Positivitea-OneSignalNotificationServiceExtension.release.xcconfig"; sourceTree = "<group>"; };
 		ADD8628ACCFA10F0A7946563 /* Pods_Sip_Of_PositiviteaTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Sip_Of_PositiviteaTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BC0B60E61EC1651700CF8774 /* ChatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
 		BC165BC91EAD6A2E00A229A1 /* Sip Of Positivitea.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Sip Of Positivitea.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -74,13 +94,18 @@
 		BC165BEA1EAD6A2E00A229A1 /* Sip Of PositiviteaUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Sip Of PositiviteaUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		BC165BEE1EAD6A2E00A229A1 /* Sip_Of_PositiviteaUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sip_Of_PositiviteaUITests.swift; sourceTree = "<group>"; };
 		BC165BF01EAD6A2E00A229A1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		BC165BFC1EAD6D3E00A229A1 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		BC165BFE1EAD737000A229A1 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		BC165C001EAD73C200A229A1 /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		BC3060C71F04BCDD00116E30 /* Sip_of_Positivitea_FINAL_2_Small-2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Sip_of_Positivitea_FINAL_2_Small-2.png"; sourceTree = "<group>"; };
 		BC3240281F117D3A00EA3EEB /* MOOverWatchLoadingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MOOverWatchLoadingView.swift; sourceTree = "<group>"; };
 		BC32402A1F11980700EA3EEB /* NewMessageTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewMessageTableViewController.swift; sourceTree = "<group>"; };
 		BC32402C1F15E70B00EA3EEB /* LaunchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LaunchViewController.swift; sourceTree = "<group>"; };
+		BC32402E1F195B5D00EA3EEB /* MassMessage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MassMessage.swift; sourceTree = "<group>"; };
+		BC3240301F195D3F00EA3EEB /* ComposeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComposeViewController.swift; sourceTree = "<group>"; };
+		BC3240321F1965E700EA3EEB /* ChooseSendTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChooseSendTableViewController.swift; sourceTree = "<group>"; };
+		BC3240341F19C83F00EA3EEB /* ContactTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactTableViewController.swift; sourceTree = "<group>"; };
+		BC3240361F19D5EC00EA3EEB /* Sip Of Positivitea.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Sip Of Positivitea.entitlements"; sourceTree = "<group>"; };
+		BC3240661F1D3C3000EA3EEB /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		BCADA9261EAD96E600680F1D /* MessageListTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageListTableViewController.swift; sourceTree = "<group>"; };
 		BCADA9281EAD96F800680F1D /* ContactsListTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactsListTableViewController.swift; sourceTree = "<group>"; };
 		BCADA92B1EAD9B1400680F1D /* Conversation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Conversation.swift; sourceTree = "<group>"; };
@@ -128,6 +153,8 @@
 				E792A0D4227E2C062A75F47E /* Pods-Sip Of PositiviteaTests.release.xcconfig */,
 				35512DA3FA575BCEA8C2C23F /* Pods-Sip Of PositiviteaUITests.debug.xcconfig */,
 				9172E2D5FEAE686595343514 /* Pods-Sip Of PositiviteaUITests.release.xcconfig */,
+				9257C171660502E57AA43920 /* Pods-Sip Of Positivitea-OneSignalNotificationServiceExtension.debug.xcconfig */,
+				9FE01AC4ACBBA1EB5C84C336 /* Pods-Sip Of Positivitea-OneSignalNotificationServiceExtension.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -138,6 +165,7 @@
 				7ECCEEF981035E3A9D9EF12F /* Pods_Sip_Of_Positivitea.framework */,
 				ADD8628ACCFA10F0A7946563 /* Pods_Sip_Of_PositiviteaTests.framework */,
 				DE5A0EB62AAFAE6DC9DC3863 /* Pods_Sip_Of_PositiviteaUITests.framework */,
+				16A0978A10050657FC39F719 /* Pods_Sip_Of_Positivitea_OneSignalNotificationServiceExtension.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -167,6 +195,7 @@
 		BC165BCB1EAD6A2E00A229A1 /* Sip Of Positivitea */ = {
 			isa = PBXGroup;
 			children = (
+				BC3240361F19D5EC00EA3EEB /* Sip Of Positivitea.entitlements */,
 				BC3060C71F04BCDD00116E30 /* Sip_of_Positivitea_FINAL_2_Small-2.png */,
 				BC165BCC1EAD6A2E00A229A1 /* AppDelegate.swift */,
 				BC165BCE1EAD6A2E00A229A1 /* FirstViewController.swift */,
@@ -175,7 +204,7 @@
 				BC165BD51EAD6A2E00A229A1 /* Assets.xcassets */,
 				BC165BD71EAD6A2E00A229A1 /* LaunchScreen.storyboard */,
 				BC165BDA1EAD6A2E00A229A1 /* Info.plist */,
-				BC165BFC1EAD6D3E00A229A1 /* GoogleService-Info.plist */,
+				BC3240661F1D3C3000EA3EEB /* GoogleService-Info.plist */,
 				BCADA92A1EAD9AB000680F1D /* Controllers */,
 				BCADA92D1EAD9BD300680F1D /* Model */,
 			);
@@ -212,6 +241,9 @@
 				BC3240281F117D3A00EA3EEB /* MOOverWatchLoadingView.swift */,
 				BC32402A1F11980700EA3EEB /* NewMessageTableViewController.swift */,
 				BC32402C1F15E70B00EA3EEB /* LaunchViewController.swift */,
+				BC3240301F195D3F00EA3EEB /* ComposeViewController.swift */,
+				BC3240321F1965E700EA3EEB /* ChooseSendTableViewController.swift */,
+				BC3240341F19C83F00EA3EEB /* ContactTableViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -222,6 +254,7 @@
 				BCADA92B1EAD9B1400680F1D /* Conversation.swift */,
 				BCADA92E1EADA1EE00680F1D /* Contact.swift */,
 				BCADA9301EADA3E800680F1D /* Group.swift */,
+				BC32402E1F195B5D00EA3EEB /* MassMessage.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -239,6 +272,7 @@
 				BC165BC71EAD6A2D00A229A1 /* Resources */,
 				92D73383E1129B5D570FE589 /* [CP] Embed Pods Frameworks */,
 				2AC0BAACBE2D7919DF0C41CD /* [CP] Copy Pods Resources */,
+				BC3240461F19D81F00EA3EEB /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
@@ -297,7 +331,7 @@
 		BC165BC11EAD6A2D00A229A1 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0820;
+				LastSwiftUpdateCheck = 0830;
 				LastUpgradeCheck = 0820;
 				ORGANIZATIONNAME = "Bria Sullivan";
 				TargetAttributes = {
@@ -305,6 +339,14 @@
 						CreatedOnToolsVersion = 8.2.1;
 						DevelopmentTeam = 884672A764;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
 					};
 					BC165BDE1EAD6A2E00A229A1 = {
 						CreatedOnToolsVersion = 8.2.1;
@@ -347,7 +389,7 @@
 			files = (
 				BC165BD91EAD6A2E00A229A1 /* LaunchScreen.storyboard in Resources */,
 				BC3060C81F04BCDD00116E30 /* Sip_of_Positivitea_FINAL_2_Small-2.png in Resources */,
-				BC165BFD1EAD6D3E00A229A1 /* GoogleService-Info.plist in Resources */,
+				BC3240671F1D3C3000EA3EEB /* GoogleService-Info.plist in Resources */,
 				BC165BD61EAD6A2E00A229A1 /* Assets.xcassets in Resources */,
 				BC165BD41EAD6A2E00A229A1 /* Main.storyboard in Resources */,
 			);
@@ -512,16 +554,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BC3240351F19C83F00EA3EEB /* ContactTableViewController.swift in Sources */,
 				BCADA9311EADA3E800680F1D /* Group.swift in Sources */,
 				BC32402D1F15E70B00EA3EEB /* LaunchViewController.swift in Sources */,
+				BC3240331F1965E700EA3EEB /* ChooseSendTableViewController.swift in Sources */,
 				BC165BFF1EAD737000A229A1 /* LoginViewController.swift in Sources */,
 				BC165BD11EAD6A2E00A229A1 /* SecondViewController.swift in Sources */,
 				BCADA92F1EADA1EE00680F1D /* Contact.swift in Sources */,
+				BC32402F1F195B5D00EA3EEB /* MassMessage.swift in Sources */,
 				BCADA9291EAD96F800680F1D /* ContactsListTableViewController.swift in Sources */,
 				BCADA92C1EAD9B1400680F1D /* Conversation.swift in Sources */,
 				BC165BCD1EAD6A2E00A229A1 /* AppDelegate.swift in Sources */,
 				BCADA9271EAD96E600680F1D /* MessageListTableViewController.swift in Sources */,
 				BC32402B1F11980700EA3EEB /* NewMessageTableViewController.swift in Sources */,
+				BC3240311F195D3F00EA3EEB /* ComposeViewController.swift in Sources */,
 				BC3240291F117D3A00EA3EEB /* MOOverWatchLoadingView.swift in Sources */,
 				BC165BCF1EAD6A2E00A229A1 /* FirstViewController.swift in Sources */,
 				BC0B60E71EC1651700CF8774 /* ChatViewController.swift in Sources */,
@@ -676,11 +722,18 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 3C11C4B11E7CD6804322CE06 /* Pods-Sip Of Positivitea.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				APPLICATION_EXTENSION_API_ONLY = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "Sip Of Positivitea/Sip Of Positivitea.entitlements";
 				DEVELOPMENT_TEAM = 884672A764;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"COCOAPODS=1",
+				);
 				INFOPLIST_FILE = "Sip Of Positivitea/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "btech.Sip-Of-Positivitea";
+				PRODUCT_BUNDLE_IDENTIFIER = com.btech.SipOfPositivitea;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -690,11 +743,18 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 2362BB0984A96545FB4AEDC3 /* Pods-Sip Of Positivitea.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				APPLICATION_EXTENSION_API_ONLY = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "Sip Of Positivitea/Sip Of Positivitea.entitlements";
 				DEVELOPMENT_TEAM = 884672A764;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"COCOAPODS=1",
+				);
 				INFOPLIST_FILE = "Sip Of Positivitea/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "btech.Sip-Of-Positivitea";
+				PRODUCT_BUNDLE_IDENTIFIER = com.btech.SipOfPositivitea;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -709,7 +769,7 @@
 				DEVELOPMENT_TEAM = 884672A764;
 				INFOPLIST_FILE = "Sip Of PositiviteaTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "btech.Sip-Of-PositiviteaTests";
+				PRODUCT_BUNDLE_IDENTIFIER = com.btech.SipOfPositiviteaTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Sip Of Positivitea.app/Sip Of Positivitea";
@@ -725,7 +785,7 @@
 				DEVELOPMENT_TEAM = 884672A764;
 				INFOPLIST_FILE = "Sip Of PositiviteaTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "btech.Sip-Of-PositiviteaTests";
+				PRODUCT_BUNDLE_IDENTIFIER = com.btech.SipOfPositiviteaTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Sip Of Positivitea.app/Sip Of Positivitea";
@@ -740,7 +800,7 @@
 				DEVELOPMENT_TEAM = 884672A764;
 				INFOPLIST_FILE = "Sip Of PositiviteaUITests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "btech.Sip-Of-PositiviteaUITests";
+				PRODUCT_BUNDLE_IDENTIFIER = com.btech.SipOfPositiviteaUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 				TEST_TARGET_NAME = "Sip Of Positivitea";
@@ -755,7 +815,7 @@
 				DEVELOPMENT_TEAM = 884672A764;
 				INFOPLIST_FILE = "Sip Of PositiviteaUITests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "btech.Sip-Of-PositiviteaUITests";
+				PRODUCT_BUNDLE_IDENTIFIER = com.btech.SipOfPositiviteaUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 				TEST_TARGET_NAME = "Sip Of Positivitea";

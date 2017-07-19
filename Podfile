@@ -10,6 +10,7 @@ target 'Sip Of Positivitea' do
   pod 'Firebase/Database'
   pod 'Firebase/Storage'
   pod 'JSQMessagesViewController' 
+  pod 'OneSignal', '>= 2.5.2', '< 3.0'
  # Pods for Sip Of Positivitea
 
   target 'Sip Of PositiviteaTests' do
@@ -21,5 +22,7 @@ target 'Sip Of Positivitea' do
     inherit! :search_paths
     # Pods for testing
   end
-
+ # target 'OneSignalNotificationServiceExtension' do
+  #  pod 'OneSignal', '>= 2.5.2', '< 3.0'
+ # end
 end

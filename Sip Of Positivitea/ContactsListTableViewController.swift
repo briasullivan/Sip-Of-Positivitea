@@ -25,6 +25,8 @@ class ContactsListTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        title = "Contacts"
+        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Sign Out", style: .plain, target: self, action: #selector(signOut))
         observeContacts()
         observeGroups()
         // Uncomment the following line to preserve selection between presentations
@@ -56,13 +58,16 @@ class ContactsListTableViewController: UITableViewController {
             let phone_number = contactData["phone_number"] as! String
             let email = contactData["email"] as! String
 
-            if first_name.characters.count > 0 { // 3
+            if first_name.characters.count > 0 && phone_number != "4044443833"{ // 3
                 self.contacts.append(
                     Contact(id: id,
                             first_name: first_name,
                             last_name: last_name,
                             phone_number: phone_number,
                             email: email))
+                self.contacts.sort {
+                    ($0.first_name + " " + $0.last_name).compare($1.first_name + " " + $1.last_name) == ComparisonResult.orderedAscending
+                }
                 self.tableView.reloadData()
             } else {
                 print("Error! Could not decode channel data")
@@ -133,6 +138,15 @@ class ContactsListTableViewController: UITableViewController {
         }
     }
     
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
+        if (indexPath.section == 1) {
+            let contactVC = storyboard.instantiateViewController(withIdentifier: "Contact") as! ContactTableViewController
+            contactVC.contact = contacts[indexPath.row]
+            self.show(contactVC, sender: self)
+        }
+    }
+    
     // MARK :Actions
     @IBAction func createContact(_ sender: AnyObject) {
        /* if let name = newChannelTextField?.text { // 1
@@ -159,6 +173,17 @@ class ContactsListTableViewController: UITableViewController {
         }
     }
 
+    func signOut() {
+        do {
+            try FIRAuth.auth()!.signOut()
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let loginViewController = storyboard.instantiateViewController(withIdentifier: "login")
+            present(loginViewController, animated: true, completion: nil)
+        } catch let signOutError as NSError {
+            print ("Error signing out: %@", signOutError)
+        }
+    }
+    
     /*
     // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {

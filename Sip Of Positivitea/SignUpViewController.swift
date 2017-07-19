@@ -95,10 +95,11 @@ class SignUpViewController: UIViewController {
                     defaults.set(numbersOnly, forKey:"user_phonenumber")
                     defaults.set(first_name, forKey:"user_firstname")
                     defaults.set(last_name, forKey:"user_lastname")
-                    
                     let uid = user?.uid
                     let userReference = self.usersRef.child(uid!)
                     let isAllynn = (phone_number == "4044443833" && email == "allynntay@yahoo.com") ? "true" : "false"
+                    defaults.set(isAllynn, forKey: "is_allynn")
+
                     let values = ["email":email,
                                   "phone_number": numbersOnly,
                                   "first_name": first_name,
@@ -122,7 +123,8 @@ class SignUpViewController: UIViewController {
                                                             first_name: first_name!,
                                                             last_name: last_name!,
                                                             phone_number: numbersOnly,
-                                                            last_received_message: Date(timeIntervalSince1970: 0 / 1000))
+                                                            last_received_message: Date(timeIntervalSince1970: 0 / 1000),
+                                                            receiver_user_id: uid!)
                                 
                             self.performSegue(withIdentifier: "AccountCreated", sender: conversation)
                         }
@@ -145,23 +147,25 @@ class SignUpViewController: UIViewController {
         super.prepare(for: segue, sender: sender)
         
         if let conversation = sender as? Conversation {
-            self.createConversation(firstName:conversation.first_name , lastName: conversation.last_name, phoneNumber: conversation.phone_number)
+            self.createConversation(firstName:conversation.first_name , lastName: conversation.last_name, phoneNumber: conversation.phone_number, receiverUserId: conversation.receiver_user_id)
             
             let chatVc = segue.destination.childViewControllers[0] as! ChatViewController
             
             chatVc.senderDisplayName = "Chat with Allynn!"
             chatVc.conversation = conversation
+            chatVc.isAllynn = "false"
             chatVc.conversationRef = conversationsRef.child(conversation.id)
         }
     }
 
-    func createConversation(firstName: String!, lastName: String!, phoneNumber:String!) {
+    func createConversation(firstName: String!, lastName: String!, phoneNumber:String!, receiverUserId:String!) {
         let newConversationRef = conversationsRef.child("Allynn"+phoneNumber)
         let conversationItem = [
             "first_name": firstName!,
             "last_name": lastName!,
             "phone_number": phoneNumber!,
             "last_received_message": 0,
+            "receiver_user_id": receiverUserId,
         ] as [String : Any]
         newConversationRef.setValue(conversationItem) // 4
     }

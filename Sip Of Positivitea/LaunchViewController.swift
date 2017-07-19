@@ -13,6 +13,7 @@ import FirebaseDatabase
 
 class LaunchViewController: UIViewController {
     private lazy var usersRef: FIRDatabaseReference = FIRDatabase.database().reference().child("users")
+    private lazy var allynnRef: FIRDatabaseReference = FIRDatabase.database().reference().child("allynn")
     private lazy var conversationsRef: FIRDatabaseReference = FIRDatabase.database().reference().child("conversations")
     private var userRefHandle: FIRDatabaseHandle?
 
@@ -30,25 +31,32 @@ class LaunchViewController: UIViewController {
         blurView.alpha = 0.7;
         self.view.addSubview(blurView)
         self.view.addSubview(loadingHolderView)
-        
-        if let curUser = FIRAuth.auth()?.currentUser {
+        let defaults = UserDefaults.standard
+        let curUser = FIRAuth.auth()?.currentUser
+        if (curUser != nil && defaults.string(forKey: "firstTimeOpen") != nil){
             // User is signed in.
-            print("start current user: " + curUser.email! )
-            self.loginToApp(user: curUser)
-            
-            
-        } else {
-            // No current user is signed in.
-            print("Currently, no user is signed in.")
-            blurView.removeFromSuperview()
-            loadingHolderView.removeFromSuperview()
-            DispatchQueue.main.async(){
-                self.performSegue(withIdentifier: "showLoginPage", sender:self)
+            print("start current user: " + curUser!.email! )
+            self.loginToApp(user: curUser!)
+            return
+        } else if (defaults.string(forKey: "firstTimeOpen") == nil) {
+            do {
+                try FIRAuth.auth()!.signOut()
+                defaults.set("opened", forKey: "firstTimeOpen")
+                defaults.synchronize()
+            } catch let signOutError as NSError {
+                print ("Error signing out: %@", signOutError)
             }
+        }
+        // No current user is signed in.
+        print("Currently, no user is signed in.")
+        blurView.removeFromSuperview()
+        loadingHolderView.removeFromSuperview()
+        DispatchQueue.main.async(){
+            self.performSegue(withIdentifier: "showLoginPage", sender:self)
         }
         // Do any additional setup after loading the view.
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -62,6 +70,7 @@ class LaunchViewController: UIViewController {
             let is_allynn = value?["is_allynn"] as? String ?? ""
             let phone_number = value?["phone_number"] as? String ?? ""
             if is_allynn == "true" {
+                self.allynnRef.child("allynn_info").child("user_id").setValue(uid)
                 self.performSegue(withIdentifier: "launchToAllynnLogin", sender: nil)
             } else {
                 self.performSegue(withIdentifier: "launchToUserLogin", sender:phone_number)
@@ -83,9 +92,16 @@ class LaunchViewController: UIViewController {
             convoReference.observeSingleEvent(of: .value, with: { (snapshot) in
                 let conversationData = snapshot.value as! Dictionary<String, AnyObject>
                 let first_name = conversationData["first_name"] as! String
-                
+                self.allynnRef.child("allynn_info").observeSingleEvent(of: .value, with: {(snapshot) in
+                    let value = snapshot.value as? NSDictionary
+                    if let allynnId = value?["user_id"] {
+                        chatVc.receiver_user_id = (allynnId as! String)
+                    }
+                })
                 chatVc.senderDisplayName = first_name
                 chatVc.conversationRef = convoReference
+                chatVc.isAllynn = "false"
+                
                 chatVc.viewDidLoad()
             })
         }

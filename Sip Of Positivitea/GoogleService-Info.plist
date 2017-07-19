@@ -7,9 +7,9 @@
 	<key>AD_UNIT_ID_FOR_INTERSTITIAL_TEST</key>
 	<string>ca-app-pub-3940256099942544/4411468910</string>
 	<key>CLIENT_ID</key>
-	<string>460297396638-1n87c6q79qdkasj79c6oh5qt08mu5osu.apps.googleusercontent.com</string>
+	<string>460297396638-71pjlddnqetarat1vl20kpla13aa891b.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.460297396638-1n87c6q79qdkasj79c6oh5qt08mu5osu</string>
+	<string>com.googleusercontent.apps.460297396638-71pjlddnqetarat1vl20kpla13aa891b</string>
 	<key>API_KEY</key>
 	<string>AIzaSyC1LYKsYJonVrXlrdJgHjvQMGd1-CUobqg</string>
 	<key>GCM_SENDER_ID</key>
@@ -17,7 +17,7 @@
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>btech.Sip-Of-Positivitea</string>
+	<string>com.btech.SipOfPositivitea</string>
 	<key>PROJECT_ID</key>
 	<string>sip-of-positivitea-e3b78</string>
 	<key>STORAGE_BUCKET</key>
@@ -33,7 +33,7 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true/>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:460297396638:ios:21b92df57ad73aaa</string>
+	<string>1:460297396638:ios:8018c0b1930edb71</string>
 	<key>DATABASE_URL</key>
 	<string>https://sip-of-positivitea-e3b78.firebaseio.com</string>
 </dict>
