@@ -68,6 +68,11 @@ class MessageListTableViewController: UITableViewController {
         let formatter = DateFormatter()
         formatter.dateFormat = "MM/dd/yyyy hh:mm a"
         cell.detailTextLabel?.text = formatter.string(from:convo.last_received_message)
+        if convo.read_messages {
+            cell.accessoryType = UITableViewCellAccessoryType.disclosureIndicator
+        } else {
+            cell.accessoryType = UITableViewCellAccessoryType.detailDisclosureButton
+        }
         return cell
     }
     
@@ -100,6 +105,7 @@ class MessageListTableViewController: UITableViewController {
             let phone_number = conversationData["phone_number"] as! String
             let date = conversationData["last_received_message"] as! TimeInterval
             let receiver_user_id = conversationData["receiver_user_id"] as? String ?? ""
+            let read_messages = conversationData["allynn_read_messages"] as? Bool ?? false
             
             if first_name.characters.count > 0 {
                 self.conversationsUnsortedData[phone_number] = Conversation(id: id,
@@ -107,7 +113,7 @@ class MessageListTableViewController: UITableViewController {
                                                                        last_name: last_name,
                                                                        phone_number: phone_number,
                                                                        last_received_message: Date(timeIntervalSince1970: date / 1000),
-                                                                       receiver_user_id: receiver_user_id)
+                                                                       receiver_user_id: receiver_user_id, read_messages: read_messages)
                 self.conversations.append(self.conversationsUnsortedData[phone_number]!)
                 self.conversations.sort {
                     $0.last_received_message.compare($1.last_received_message) == ComparisonResult.orderedDescending
@@ -125,13 +131,15 @@ class MessageListTableViewController: UITableViewController {
             let last_name = conversationData["last_name"] as! String
             let phone_number = conversationData["phone_number"] as! String
             let date = conversationData["last_received_message"] as! TimeInterval
-            let receiver_user_id = conversationData["receiver_user_id"] as! String
+            let receiver_user_id = conversationData["receiver_user_id"] as? String ?? ""
+            let read_messages = conversationData["allynn_read_messages"] as? Bool ?? false
+
             self.conversationsUnsortedData[phone_number] = Conversation(id: id,
                                                                         first_name: first_name,
                                                                         last_name: last_name,
                                                                         phone_number: phone_number,
                                                                         last_received_message: Date(timeIntervalSince1970: date / 1000),
-                                                                        receiver_user_id:receiver_user_id)
+                                                                        receiver_user_id:receiver_user_id, read_messages: read_messages)
             self.conversations.removeAll()
             self.conversations.append(contentsOf: self.conversationsUnsortedData.values)
             self.conversations.sort {

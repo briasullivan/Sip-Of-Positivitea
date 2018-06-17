@@ -9,6 +9,8 @@
 import UIKit
 import Firebase
 import OneSignal
+import IQKeyboardManagerSwift
+
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -34,6 +36,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UINavigationBar.appearance().tintColor = UIColor.darkGray
         FIRApp.configure()
         FIRDatabase.database().persistenceEnabled = true
+        IQKeyboardManager.sharedManager().enable = true
 
         return true
     }

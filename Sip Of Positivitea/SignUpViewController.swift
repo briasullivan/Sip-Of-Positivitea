@@ -19,7 +19,7 @@ class SignUpViewController: UIViewController {
     
     private lazy var usersRef: FIRDatabaseReference = FIRDatabase.database().reference().child("users")
     private lazy var conversationsRef: FIRDatabaseReference = FIRDatabase.database().reference().child("conversations")
-    
+    private lazy var allynnRef: FIRDatabaseReference = FIRDatabase.database().reference().child("allynn")
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -104,7 +104,8 @@ class SignUpViewController: UIViewController {
                                   "phone_number": numbersOnly,
                                   "first_name": first_name,
                                   "last_name": last_name,
-                                  "is_allynn": isAllynn]
+                                  "is_allynn": isAllynn,
+                                  "notification_user_id": "no_id"]
 
                     userReference.updateChildValues(values, withCompletionBlock: { (error, ref) in
                         if error != nil {
@@ -124,7 +125,7 @@ class SignUpViewController: UIViewController {
                                                             last_name: last_name!,
                                                             phone_number: numbersOnly,
                                                             last_received_message: Date(timeIntervalSince1970: 0 / 1000),
-                                                            receiver_user_id: uid!)
+                                                            receiver_user_id: uid!,read_messages:true)
                                 
                             self.performSegue(withIdentifier: "AccountCreated", sender: conversation)
                         }
@@ -155,6 +156,12 @@ class SignUpViewController: UIViewController {
             chatVc.conversation = conversation
             chatVc.isAllynn = "false"
             chatVc.conversationRef = conversationsRef.child(conversation.id)
+            self.allynnRef.child("allynn_info").observeSingleEvent(of: .value, with: {(snapshot) in
+                let value = snapshot.value as? NSDictionary
+                if let allynnId = value?["user_id"] {
+                    chatVc.receiver_user_id = (allynnId as! String)
+                }
+            })
         }
     }
 
@@ -166,6 +173,7 @@ class SignUpViewController: UIViewController {
             "phone_number": phoneNumber!,
             "last_received_message": 0,
             "receiver_user_id": receiverUserId,
+            "allynn_read_messages": true,
         ] as [String : Any]
         newConversationRef.setValue(conversationItem) // 4
     }

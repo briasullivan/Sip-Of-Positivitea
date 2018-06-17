@@ -15,6 +15,7 @@ import Photos
 import Foundation
 import SystemConfiguration
 import OneSignal
+import Agrume
 
 class ChatViewController: JSQMessagesViewController {
     
@@ -37,6 +38,7 @@ class ChatViewController: JSQMessagesViewController {
 
 
     private let imageURLNotSetKey = "NOTSET"
+    var isViewingMessageDetail = true
 
     var messages = [JSQMessage]()
     lazy var outgoingBubbleImageView: JSQMessagesBubbleImage = self.setupOutgoingBubble()
@@ -86,7 +88,7 @@ class ChatViewController: JSQMessagesViewController {
         }
         
         if title == nil {
-            title = "Chat with Allynn"
+            title = "Inspiration from Allynn"
         }
         print("title = " + title!)
         
@@ -97,6 +99,7 @@ class ChatViewController: JSQMessagesViewController {
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        isViewingMessageDetail = true
 
         // animates the receiving of a new message on the view
         finishReceivingMessage()
@@ -137,6 +140,12 @@ class ChatViewController: JSQMessagesViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        isViewingMessageDetail = false
+    }
+    
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = super.collectionView(collectionView, cellForItemAt: indexPath) as! JSQMessagesCollectionViewCell
@@ -243,14 +252,19 @@ class ChatViewController: JSQMessagesViewController {
             ] as [String : Any]
         
         itemRef.setValue(messageItem) // 3
-        
+        if self.isAllynn == "false" {
+            self.conversationRef?.child("allynn_read_messages").setValue(false);
+        }
+
         JSQSystemSoundPlayer.jsq_playMessageSentSound() // 4
-        if (isAllynn == "true" && (self.receiver_user_id != nil)) {
+        if (self.receiver_user_id != nil) {
             self.usersRef.child(self.receiver_user_id!).observeSingleEvent(of: .value, with: { (snapshot) in
                 // Get user value
                 let value = snapshot.value as? NSDictionary
                 if let userId = value?["notification_user_id"] {
-                    OneSignal.postNotification(["headings": ["en":senderDisplayName!], "contents": ["en":text!], "include_player_ids": [(userId as! String) ]])
+                    if ((userId as! String) != "no_id") {
+                        OneSignal.postNotification(["headings": ["en":senderDisplayName!], "contents": ["en":text!], "include_player_ids": [(userId as! String) ]])
+                    }
                 }
                 
                 // ...
@@ -306,7 +320,9 @@ class ChatViewController: JSQMessagesViewController {
             
             let id = messageData["senderId"] as! String
             
-            
+            if self.isAllynn == "true" {
+                self.conversationRef?.child("allynn_read_messages").setValue(self.isViewingMessageDetail);
+            }
             if let name = messageData["senderName"],
             let text = messageData["text"], (text as! String).characters.count > 0 {
                 // 4
@@ -314,6 +330,7 @@ class ChatViewController: JSQMessagesViewController {
                 //JSQSystemSoundPlayer.jsq_playMessageReceivedSound()
 
                 self.conversationRef?.child("last_received_message").setValue(messageData["date"])
+                
                 // 5
                 self.finishReceivingMessage()
             }
@@ -321,6 +338,10 @@ class ChatViewController: JSQMessagesViewController {
                 // 2
                 if let mediaItem = JSQPhotoMediaItem(maskAsOutgoing: id == self.senderId) {
                     // 3
+                    if messageData["date"] != nil {
+                        self.conversationRef?.child("last_received_message").setValue(messageData["date"])
+
+                    }
                     self.addPhotoMessage(withId: id, key: snapshot.key, mediaItem: mediaItem)
                     //JSQSystemSoundPlayer.jsq_playMessageReceivedSound()
                     // 4
@@ -336,7 +357,7 @@ class ChatViewController: JSQMessagesViewController {
             let key = snapshot.key
             let messageData = snapshot.value as! Dictionary<String, AnyObject> // 1
             
-            if let photoURL = messageData["photoURL"] { // 2
+            if let photoURL = messageData["photoURL"], photoURL as! String != self.imageURLNotSetKey { // 2
                 // The photo has been updated.
                 if let mediaItem = self.photoMessageMap[key] { // 3
                     self.fetchImageDataAtURL(photoURL as! String, forMediaItem: mediaItem, clearsPhotoMessageMapOnSuccessForKey: key) // 4
@@ -351,12 +372,34 @@ class ChatViewController: JSQMessagesViewController {
         let messageItem = [
             "photoURL": imageURLNotSetKey,
             "senderId": senderId!,
-            ]
+            "date": [".sv": "timestamp"]
+            ] as [String : Any]
         
         itemRef.setValue(messageItem)
+        if self.isAllynn == "false" {
+            self.conversationRef?.child("allynn_read_messages").setValue(false);
+        }
         
         JSQSystemSoundPlayer.jsq_playMessageSentSound()
-        
+        if (self.receiver_user_id != nil) {
+            self.usersRef.child(self.receiver_user_id!).observeSingleEvent(of: .value, with: { (snapshot) in
+                // Get user value
+                let value = snapshot.value as? NSDictionary
+                if let userId = value?["notification_user_id"] {
+                    if ((userId as! String) != "no_id") {
+                        OneSignal.postNotification(["headings": ["en":self.senderDisplayName], "contents": ["en":"New Image Message"], "include_player_ids": [(userId as! String) ]])
+                    }
+                }
+                
+                // ...
+            }) { (error) in
+                print(error.localizedDescription)
+            }
+            
+            
+        } else {
+            
+        }
         finishSendingMessage()
         return itemRef.key
     }
@@ -454,5 +497,22 @@ extension ChatViewController: UIImagePickerControllerDelegate, UINavigationContr
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         picker.dismiss(animated: true, completion:nil)
+    }
+    override func collectionView(_ collectionView: JSQMessagesCollectionView!, didTapMessageBubbleAt indexPath: IndexPath!) {
+        let message =  self.messages[indexPath.row]
+        if message.isMediaMessage == true{
+            let mediaItem =  message.media
+            if mediaItem is JSQPhotoMediaItem{
+                let photoItem = mediaItem as! JSQPhotoMediaItem
+                if let image = photoItem.image {
+                    let agrume = Agrume(image: image, backgroundBlurStyle: .light)
+                    agrume.showFrom(self)
+                }
+          //      let vc = self.storyboard?.instantiateViewController(withIdentifier: "ImgController") as! ImgViewController
+           //     vc.image =  photoItem.image
+            //    self.navigationController?.pushViewController(vc, animated: true)
+            }
+            
+        }
     }
 }

@@ -120,7 +120,12 @@ class LoginViewController: UIViewController {
             convoReference.observeSingleEvent(of: .value, with: { (snapshot) in
                 let conversationData = snapshot.value as! Dictionary<String, AnyObject>
                 let first_name = conversationData["first_name"] as! String
-
+                self.allynnRef.child("allynn_info").observeSingleEvent(of: .value, with: {(snapshot) in
+                    let value = snapshot.value as? NSDictionary
+                    if let allynnId = value?["user_id"] {
+                        chatVc.receiver_user_id = (allynnId as! String)
+                    }
+                })
                 chatVc.senderDisplayName = first_name
                 chatVc.conversationRef = convoReference
                 chatVc.isAllynn = "false"

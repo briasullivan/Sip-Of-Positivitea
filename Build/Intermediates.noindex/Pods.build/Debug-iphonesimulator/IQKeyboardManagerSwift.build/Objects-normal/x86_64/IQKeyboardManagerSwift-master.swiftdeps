@@ -1,0 +1,20 @@
+version: "Apple Swift version 4.0.3 (swiftlang-900.0.74.1 clang-900.0.39.2)"
+options: "0bab0ec9037695b02082315629b065c8"
+build_time: [1516247870, 457602000]
+inputs:
+  "/Users/briasullivan/Desktop/Sip Of Positivitea/Pods/IQKeyboardManagerSwift/IQKeyboardManagerSwift/IQToolbar/IQBarButtonItem.swift": [1504158443, 0]
+  "/Users/briasullivan/Desktop/Sip Of Positivitea/Pods/IQKeyboardManagerSwift/IQKeyboardManagerSwift/IQKeyboardManager.swift": [1504158443, 0]
+  "/Users/briasullivan/Desktop/Sip Of Positivitea/Pods/IQKeyboardManagerSwift/IQKeyboardManagerSwift/Constants/IQKeyboardManagerConstants.swift": [1504158443, 0]
+  "/Users/briasullivan/Desktop/Sip Of Positivitea/Pods/IQKeyboardManagerSwift/IQKeyboardManagerSwift/Constants/IQKeyboardManagerConstantsInternal.swift": [1504158443, 0]
+  "/Users/briasullivan/Desktop/Sip Of Positivitea/Pods/IQKeyboardManagerSwift/IQKeyboardManagerSwift/IQKeyboardReturnKeyHandler.swift": [1504158443, 0]
+  "/Users/briasullivan/Desktop/Sip Of Positivitea/Pods/IQKeyboardManagerSwift/IQKeyboardManagerSwift/Categories/IQNSArray+Sort.swift": [1504158443, 0]
+  "/Users/briasullivan/Desktop/Sip Of Positivitea/Pods/IQKeyboardManagerSwift/IQKeyboardManagerSwift/IQToolbar/IQPreviousNextView.swift": [1504158443, 0]
+  "/Users/briasullivan/Desktop/Sip Of Positivitea/Pods/IQKeyboardManagerSwift/IQKeyboardManagerSwift/IQTextView/IQTextView.swift": [1504158443, 0]
+  "/Users/briasullivan/Desktop/Sip Of Positivitea/Pods/IQKeyboardManagerSwift/IQKeyboardManagerSwift/IQToolbar/IQTitleBarButtonItem.swift": [1504158443, 0]
+  "/Users/briasullivan/Desktop/Sip Of Positivitea/Pods/IQKeyboardManagerSwift/IQKeyboardManagerSwift/IQToolbar/IQToolbar.swift": [1504158443, 0]
+  "/Users/briasullivan/Desktop/Sip Of Positivitea/Pods/IQKeyboardManagerSwift/IQKeyboardManagerSwift/Categories/IQUIScrollView+Additions.swift": [1504158443, 0]
+  "/Users/briasullivan/Desktop/Sip Of Positivitea/Pods/IQKeyboardManagerSwift/IQKeyboardManagerSwift/Categories/IQUITextFieldView+Additions.swift": [1504158443, 0]
+  "/Users/briasullivan/Desktop/Sip Of Positivitea/Pods/IQKeyboardManagerSwift/IQKeyboardManagerSwift/Categories/IQUIView+Hierarchy.swift": [1504158443, 0]
+  "/Users/briasullivan/Desktop/Sip Of Positivitea/Pods/IQKeyboardManagerSwift/IQKeyboardManagerSwift/IQToolbar/IQUIView+IQKeyboardToolbar.swift": [1504158443, 0]
+  "/Users/briasullivan/Desktop/Sip Of Positivitea/Pods/IQKeyboardManagerSwift/IQKeyboardManagerSwift/Categories/IQUIViewController+Additions.swift": [1504158443, 0]
+  "/Users/briasullivan/Desktop/Sip Of Positivitea/Pods/IQKeyboardManagerSwift/IQKeyboardManagerSwift/Categories/IQUIWindow+Hierarchy.swift": [1504158443, 0]

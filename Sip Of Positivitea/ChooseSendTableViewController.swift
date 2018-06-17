@@ -22,7 +22,7 @@ class ChooseSendTableViewController: UITableViewController {
     private var groups : [Group] = []
     private var contacts : [Contact] = []
     private var conversationIdsToSend : [String] = []
-    private var contactsToSend : [String:String] = [:]
+    private var contactsToSend : [String:Contact] = [:]
     private var groupsToSend : [String:Bool] = [:]
     private var sendToAll : Bool = false
 
@@ -78,6 +78,7 @@ class ChooseSendTableViewController: UITableViewController {
                 if(contact.phone_number == "4044443833") {
                     continue;
                 }
+                let messageContents = "Hey " + contact.first_name + ", " + (newMassMessage?.messageContent)!
                 let conversationId = "Allynn"+contact.phone_number
                 let userConvoRef = self.conversationsRef.child(conversationId)
                 let messageRef = userConvoRef.child("messages")
@@ -85,10 +86,12 @@ class ChooseSendTableViewController: UITableViewController {
                 let messageItem = [ // 2
                     "senderId":  (FIRAuth.auth()?.currentUser?.uid)!,
                     "senderName": "Allynn",
-                    "text": (newMassMessage?.messageContent)!,
+                    "text": messageContents,
                     "date": [".sv": "timestamp"],
                     ] as [String : Any]
-                notificationIds.append(contact.notification_id)
+                if (contact.notification_id != "no_id") {
+                    notificationIds.append(contact.notification_id)
+                }
                 itemRef.setValue(messageItem)
             }
             OneSignal.postNotification(["headings": ["en":"Allynn"], "contents": ["en": (newMassMessage?.messageContent)!], "include_player_ids": notificationIds])
@@ -98,16 +101,19 @@ class ChooseSendTableViewController: UITableViewController {
             if (contactsToSend.count > 0) {
                 for contact in contactsToSend.keys {
                     let conversationId = "Allynn"+contact
+                    let messageContents = "Hey " + contactsToSend[contact]!.first_name + ", " + (newMassMessage?.messageContent)!
                     let userConvoRef = self.conversationsRef.child(conversationId)
                     let messageRef = userConvoRef.child("messages")
                     let itemRef = messageRef.childByAutoId() // 1
                     let messageItem = [ // 2
                         "senderId":  (FIRAuth.auth()?.currentUser?.uid)!,
                         "senderName": "Allynn",
-                        "text": (newMassMessage?.messageContent)!,
+                        "text": messageContents,
                         "date": [".sv": "timestamp"],
                         ] as [String : Any]
-                    notificationIds.append(contactsToSend[contact]!)
+                    if (contactsToSend[contact]!.notification_id != "no_id") {
+                        notificationIds.append(contactsToSend[contact]!.notification_id)
+                    }
                     itemRef.setValue(messageItem)
                 }
                 OneSignal.postNotification(["headings": ["en":"Allynn"], "contents": ["en": (newMassMessage?.messageContent)!], "include_player_ids": notificationIds])
@@ -174,7 +180,7 @@ class ChooseSendTableViewController: UITableViewController {
             let last_name = contactData["last_name"] as! String
             let phone_number = contactData["phone_number"] as! String
             let email = contactData["email"] as! String
-            let notification_id = contactData["notification_user_id"] as! String
+            let notification_id = contactData["notification_user_id"] as? String ?? "no_id"
             
             if first_name.characters.count > 0 && phone_number != "4044443833" { // 3
                 self.contacts.append(
@@ -218,7 +224,7 @@ class ChooseSendTableViewController: UITableViewController {
                     groupsToSend[groups[indexPath.row].id] = true
                     break;
                 case .sendToContact:
-                    contactsToSend[contacts[indexPath.row].phone_number] = contacts[indexPath.row].notification_id
+                    contactsToSend[contacts[indexPath.row].phone_number] = contacts[indexPath.row]
                     break;
                 }
             }

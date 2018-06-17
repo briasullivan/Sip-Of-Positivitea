@@ -1,0 +1,9 @@
+version: "Apple Swift version 4.0.3 (swiftlang-900.0.74.1 clang-900.0.39.2)"
+options: "d1535b4b63a74ac2e2f9b002fce1f742"
+build_time: [1516247860, 474084000]
+inputs:
+  "/Users/briasullivan/Desktop/Sip Of Positivitea/Pods/Agrume/Agrume/Agrume.swift": [1503975303, 0]
+  "/Users/briasullivan/Desktop/Sip Of Positivitea/Pods/Agrume/Agrume/AgrumeCell.swift": [1503975303, 0]
+  "/Users/briasullivan/Desktop/Sip Of Positivitea/Pods/Agrume/Agrume/AgrumeServiceLocator.swift": [1503975303, 0]
+  "/Users/briasullivan/Desktop/Sip Of Positivitea/Pods/Agrume/Agrume/ImageDownloader.swift": [1503975303, 0]
+  "/Users/briasullivan/Desktop/Sip Of Positivitea/Pods/Agrume/Agrume/UIViewExtensions.swift": [1503975303, 0]

@@ -11,6 +11,9 @@ target 'Sip Of Positivitea' do
   pod 'Firebase/Storage'
   pod 'JSQMessagesViewController' 
   pod 'OneSignal', '>= 2.5.2', '< 3.0'
+  pod 'Agrume', :git => 'https://github.com/JanGorman/Agrume.git'
+  pod 'IQKeyboardManagerSwift', '4.0.10'
+
  # Pods for Sip Of Positivitea
 
   target 'Sip Of PositiviteaTests' do

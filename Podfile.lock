@@ -1,4 +1,5 @@
 PODS:
+  - Agrume (3.2.2)
   - Firebase/Auth (3.11.0):
     - Firebase/Core
     - FirebaseAuth (= 3.1.0)
@@ -44,20 +45,33 @@ PODS:
     - GoogleToolboxForMac/NSString+URLArguments (= 2.1.1)
   - GoogleToolboxForMac/NSString+URLArguments (2.1.1)
   - GTMSessionFetcher/Core (1.1.11)
+  - IQKeyboardManagerSwift (4.0.10)
   - JSQMessagesViewController (7.3.4):
     - JSQSystemSoundPlayer (~> 2.0.1)
   - JSQSystemSoundPlayer (2.0.1)
   - OneSignal (2.5.4)
 
 DEPENDENCIES:
+  - Agrume (from `https://github.com/JanGorman/Agrume.git`)
   - Firebase/Auth
   - Firebase/Core
   - Firebase/Database
   - Firebase/Storage
+  - IQKeyboardManagerSwift (= 4.0.10)
   - JSQMessagesViewController
   - OneSignal (< 3.0, >= 2.5.2)
 
+EXTERNAL SOURCES:
+  Agrume:
+    :git: https://github.com/JanGorman/Agrume.git
+
+CHECKOUT OPTIONS:
+  Agrume:
+    :commit: c66d07d5d1116ea2dbc141f39209cdc95cf34af7
+    :git: https://github.com/JanGorman/Agrume.git
+
 SPEC CHECKSUMS:
+  Agrume: 0f0308f2ce60fca0acf234cab1ae3cf7468b9168
   Firebase: b8134e285eb33201115bc688bc5d7f112923bc1f
   FirebaseAnalytics: 9c67af0ebeb8d2146c9b4ea2616439affa947b58
   FirebaseAuth: b436e4ecebe068bf8e8c6e4e29de5756ffe7ee24
@@ -69,10 +83,11 @@ SPEC CHECKSUMS:
   GoogleSymbolUtilities: 631ee17048aa5e9ab133470d768ea997a5ef9b96
   GoogleToolboxForMac: 8e329f1b599f2512c6b10676d45736bcc2cbbeb0
   GTMSessionFetcher: 5ad62e8200fa00ed011fe5e08d27fef72c5b1429
+  IQKeyboardManagerSwift: 75ba21a23794a1e6b6fe6d9a267ea17f80e06771
   JSQMessagesViewController: 39fed975e3c9f8eba7292071e29eeb541d105e66
   JSQSystemSoundPlayer: c5850e77a4363ffd374cd851154b9af93264ed8d
   OneSignal: da994bcf6a2efbdceaf71e389e1d05245c562899
 
-PODFILE CHECKSUM: f7e4aefe84b260c750c06c5a207c1cb6e3b3a276
+PODFILE CHECKSUM: 033486bc78e44eb39cb68090be0073fce48abc9d
 
 COCOAPODS: 1.1.1
