@@ -17,9 +17,9 @@ class SignUpViewController: UIViewController {
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var phoneNumberTextField: UITextField!
     
-    private lazy var usersRef: FIRDatabaseReference = FIRDatabase.database().reference().child("users")
-    private lazy var conversationsRef: FIRDatabaseReference = FIRDatabase.database().reference().child("conversations")
-    private lazy var allynnRef: FIRDatabaseReference = FIRDatabase.database().reference().child("allynn")
+    private lazy var usersRef: DatabaseReference = Database.database().reference().child("users")
+    private lazy var conversationsRef: DatabaseReference = Database.database().reference().child("conversations")
+    private lazy var allynnRef: DatabaseReference = Database.database().reference().child("allynn")
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -85,7 +85,7 @@ class SignUpViewController: UIViewController {
             
         } else {
             let numbersOnly = String(phone_number!.characters.filter { "0123456789".characters.contains($0) })
-            FIRAuth.auth()?.createUser(withEmail: emailTextField.text!, password: numbersOnly) { (user, error) in
+            Auth.auth()?.createUser(withEmail: emailTextField.text!, password: numbersOnly) { (user, error) in
                 
                 if error == nil {
                     print("You have successfully signed up")

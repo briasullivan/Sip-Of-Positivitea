@@ -14,10 +14,10 @@ import FirebaseDatabase
 class LoginViewController: UIViewController {
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var phoneNumberTextField: UITextField!
-    private lazy var usersRef: FIRDatabaseReference = FIRDatabase.database().reference().child("users")
-    private lazy var allynnRef: FIRDatabaseReference = FIRDatabase.database().reference().child("allynn")
-    private lazy var conversationsRef: FIRDatabaseReference = FIRDatabase.database().reference().child("conversations")
-    private var userRefHandle: FIRDatabaseHandle?
+    private lazy var usersRef: DatabaseReference = Database.database().reference().child("users")
+    private lazy var allynnRef: DatabaseReference = Database.database().reference().child("allynn")
+    private lazy var conversationsRef: DatabaseReference = Database.database().reference().child("conversations")
+    private var userRefHandle: DatabaseHandle?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -62,7 +62,7 @@ class LoginViewController: UIViewController {
             self.view.addSubview(loadingHolderView)
             let numbersOnly = String(phone_number!.characters.filter { "0123456789".characters.contains($0) })
 
-            FIRAuth.auth()?.signIn(withEmail: email!, password: numbersOnly) { (user, error) in
+            Auth.auth().signIn(withEmail: email!, password: numbersOnly) { (user, error) in
                 
                 if error == nil {
                     
@@ -70,7 +70,7 @@ class LoginViewController: UIViewController {
                     print("You have successfully logged in")
                     blurView.removeFromSuperview()
                     loadingHolderView.removeFromSuperview()
-                   self.loginToApp(user: user!)
+                   self.loginToApp(user: user!.user)
                     
                 } else {
                     blurView.removeFromSuperview()
@@ -87,7 +87,7 @@ class LoginViewController: UIViewController {
         }
     }
 
-    func loginToApp(user: FIRUser) {
+    func loginToApp(user: User) {
         let uid = user.uid
         let userReference = self.usersRef.child(uid)
         userReference.observeSingleEvent(of: .value, with:{ (snapshot) in

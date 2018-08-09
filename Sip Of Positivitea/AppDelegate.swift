@@ -34,8 +34,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
  
         UINavigationBar.appearance().titleTextAttributes = [ NSFontAttributeName: UIFont(name: "Avenir Next", size: 20)!]
         UINavigationBar.appearance().tintColor = UIColor.darkGray
-        FIRApp.configure()
-        FIRDatabase.database().persistenceEnabled = true
+        FirebaseApp.configure()
+        Database.database().isPersistenceEnabled = true
         IQKeyboardManager.sharedManager().enable = true
 
         return true

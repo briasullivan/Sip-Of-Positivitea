@@ -14,9 +14,9 @@ class MessageListTableViewController: UITableViewController {
     var senderDisplayName: String?
     private var conversationsUnsortedData : [String:Conversation] = [:]
     private var conversations : [Conversation] = []
-    private lazy var conversationsRef: FIRDatabaseReference = FIRDatabase.database().reference().child("conversations")
-    private var conversationsRefHandle: FIRDatabaseHandle?
-    private var conversationsChangedHandle: FIRDatabaseHandle?
+    private lazy var conversationsRef: DatabaseReference = Database.database().reference().child("conversations")
+    private var conversationsRefHandle: DatabaseHandle?
+    private var conversationsChangedHandle: DatabaseHandle?
 
     private var isAllynn : Bool = false;
     

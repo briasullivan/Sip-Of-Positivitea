@@ -24,7 +24,7 @@ class UserMessageViewController: UIViewController {
     
     @IBAction func signOutPressed(_ sender: AnyObject) {
         do {
-            try FIRAuth.auth()!.signOut()
+            try Auth.auth()!.signOut()
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             let loginViewController = storyboard.instantiateViewController(withIdentifier: "login")
             present(loginViewController, animated: true, completion: nil)
