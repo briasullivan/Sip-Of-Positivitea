@@ -214,14 +214,14 @@ class ChatViewController: JSQMessagesViewController {
         let storageRef = Storage.storage().reference(forURL: photoURL)
         
         // 2
-        storageRef.data(withMaxSize: INT64_MAX){ (data, error) in
+        storageRef.getData(maxSize: INT64_MAX){ (data, error) in
             if let error = error {
                 print("Error downloading image data: \(error)")
                 return
             }
             
             // 3
-            storageRef.metadata(completion: { (metadata, metadataErr) in
+            storageRef.getMetadata(completion: { (metadata, metadataErr) in
                 if let error = metadataErr {
                     print("Error downloading metadata: \(error)")
                     return
@@ -453,7 +453,7 @@ extension ChatViewController: UIImagePickerControllerDelegate, UINavigationContr
                     
                     
                     // 6
-                    self.storageRef.child(path).putFile(fileURL, metadata: nil) { (metadata, error) in
+                    self.storageRef.child(path).putFile(from:fileURL, metadata: nil) { (metadata, error) in
                         if let error = error {
                             print("Error uploading photo: \(error.localizedDescription)")
                             return
@@ -483,7 +483,7 @@ extension ChatViewController: UIImagePickerControllerDelegate, UINavigationContr
                 let metadata = StorageMetadata()
                 metadata.contentType = "image/jpeg"
                 // 6
-                storageRef.child(imagePath).put(imageData!, metadata: metadata) { (metadata, error) in
+                storageRef.child(imagePath).putData(imageData!, metadata: metadata) { (metadata, error) in
                     if let error = error {
                         print("Error uploading photo: \(error)")
                         return

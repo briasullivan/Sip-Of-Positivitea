@@ -85,7 +85,7 @@ class SignUpViewController: UIViewController {
             
         } else {
             let numbersOnly = String(phone_number!.characters.filter { "0123456789".characters.contains($0) })
-            Auth.auth()?.createUser(withEmail: emailTextField.text!, password: numbersOnly) { (user, error) in
+            Auth.auth().createUser(withEmail: emailTextField.text!, password: numbersOnly) { (user, error) in
                 
                 if error == nil {
                     print("You have successfully signed up")
@@ -95,7 +95,7 @@ class SignUpViewController: UIViewController {
                     defaults.set(numbersOnly, forKey:"user_phonenumber")
                     defaults.set(first_name, forKey:"user_firstname")
                     defaults.set(last_name, forKey:"user_lastname")
-                    let uid = user?.uid
+                    let uid = user?.user.uid
                     let userReference = self.usersRef.child(uid!)
                     let isAllynn = (phone_number == "4044443833" && email == "allynntay@yahoo.com") ? "true" : "false"
                     defaults.set(isAllynn, forKey: "is_allynn")
