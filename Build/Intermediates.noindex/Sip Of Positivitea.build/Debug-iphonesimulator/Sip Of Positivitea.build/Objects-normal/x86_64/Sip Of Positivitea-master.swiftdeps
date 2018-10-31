@@ -1,6 +1,6 @@
 version: "Apple Swift version 4.0.3 (swiftlang-900.0.74.1 clang-900.0.39.2)"
 options: "89c13dbad5bf398f29a8c0e7e66ca9f4"
-build_time: [1516247890, 905711000]
+build_time: [1533775966, 454792000]
 inputs:
   "/Users/briasullivan/Desktop/Sip Of Positivitea/Sip Of Positivitea/ContactTableViewController.swift": [1500093347, 0]
   "/Users/briasullivan/Desktop/Sip Of Positivitea/Sip Of Positivitea/Group.swift": [1500087565, 0]
@@ -13,7 +13,7 @@ inputs:
   "/Users/briasullivan/Desktop/Sip Of Positivitea/Sip Of Positivitea/ContactsListTableViewController.swift": [1500090725, 0]
   "/Users/briasullivan/Desktop/Sip Of Positivitea/Sip Of Positivitea/Conversation.swift": [1503819575, 0]
   "/Users/briasullivan/Desktop/Sip Of Positivitea/Sip Of Positivitea/AppDelegate.swift": [1504158509, 0]
-  "/Users/briasullivan/Desktop/Sip Of Positivitea/Sip Of Positivitea/MessageListTableViewController.swift": [1503819575, 0]
+  "/Users/briasullivan/Desktop/Sip Of Positivitea/Sip Of Positivitea/MessageListTableViewController.swift": [1516248796, 0]
   "/Users/briasullivan/Desktop/Sip Of Positivitea/Sip Of Positivitea/NewMessageTableViewController.swift": [1500093459, 0]
   "/Users/briasullivan/Desktop/Sip Of Positivitea/Sip Of Positivitea/ComposeViewController.swift": [1500089119, 0]
   "/Users/briasullivan/Desktop/Sip Of Positivitea/Sip Of Positivitea/MOOverWatchLoadingView.swift": [1499833124, 0]

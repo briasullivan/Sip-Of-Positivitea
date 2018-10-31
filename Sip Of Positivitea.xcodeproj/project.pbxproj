@@ -714,7 +714,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
-				VALIDATE_PRODUCT = YES;
+				VALIDATE_PRODUCT = NO;
 			};
 			name = Release;
 		};
@@ -832,7 +832,7 @@
 				BC165BF21EAD6A2E00A229A1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 		BC165BF31EAD6A2E00A229A1 /* Build configuration list for PBXNativeTarget "Sip Of Positivitea" */ = {
 			isa = XCConfigurationList;
@@ -841,7 +841,7 @@
 				BC165BF51EAD6A2E00A229A1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 		BC165BF61EAD6A2E00A229A1 /* Build configuration list for PBXNativeTarget "Sip Of PositiviteaTests" */ = {
 			isa = XCConfigurationList;
@@ -850,7 +850,7 @@
 				BC165BF81EAD6A2E00A229A1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 		BC165BF91EAD6A2E00A229A1 /* Build configuration list for PBXNativeTarget "Sip Of PositiviteaUITests" */ = {
 			isa = XCConfigurationList;
@@ -859,7 +859,7 @@
 				BC165BFB1EAD6A2E00A229A1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 /* End XCConfigurationList section */
 	};
