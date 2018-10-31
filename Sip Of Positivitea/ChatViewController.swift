@@ -19,7 +19,7 @@ import Agrume
 
 class ChatViewController: JSQMessagesViewController {
     
-    var conversationRef: FIRDatabaseReference?
+    var conversationRef: DatabaseReference?
     var conversation: Conversation? {
         didSet {
             title = conversation?.first_name
@@ -28,13 +28,13 @@ class ChatViewController: JSQMessagesViewController {
     var isAllynn : String? = "true"
     var receiver_user_id: String?
     
-    private lazy var messageRef: FIRDatabaseReference = self.conversationRef!.child("messages")
-    private lazy var usersRef: FIRDatabaseReference = FIRDatabase.database().reference().child("users")
+    private lazy var messageRef: DatabaseReference = self.conversationRef!.child("messages")
+    private lazy var usersRef: DatabaseReference = Database.database().reference().child("users")
 
-    private var newMessageRefHandle: FIRDatabaseHandle?
-    lazy var storageRef: FIRStorageReference = FIRStorage.storage().reference(forURL: "gs://sip-of-positivitea-e3b78.appspot.com")
+    private var newMessageRefHandle: DatabaseHandle?
+    lazy var storageRef: StorageReference = Storage.storage().reference(forURL: "gs://sip-of-positivitea-e3b78.appspot.com")
     private var photoMessageMap = [String: JSQPhotoMediaItem]()
-    private var updatedMessageRefHandle: FIRDatabaseHandle?
+    private var updatedMessageRefHandle: DatabaseHandle?
 
 
     private let imageURLNotSetKey = "NOTSET"
@@ -48,7 +48,7 @@ class ChatViewController: JSQMessagesViewController {
         super.viewDidLoad()
         // Recommend moving the below line to prompt for push after informing the user about
         //   how your app will use them.
-        self.senderId = FIRAuth.auth()?.currentUser?.uid
+        self.senderId = Auth.auth().currentUser?.uid
         
         OneSignal.promptForPushNotifications(userResponse: { accepted in
             print("User accepted notifications: \(accepted)")
@@ -211,17 +211,17 @@ class ChatViewController: JSQMessagesViewController {
     
     private func fetchImageDataAtURL(_ photoURL: String, forMediaItem mediaItem: JSQPhotoMediaItem, clearsPhotoMessageMapOnSuccessForKey key: String?) {
         // 1
-        let storageRef = FIRStorage.storage().reference(forURL: photoURL)
+        let storageRef = Storage.storage().reference(forURL: photoURL)
         
         // 2
-        storageRef.data(withMaxSize: INT64_MAX){ (data, error) in
+        storageRef.getData(maxSize: INT64_MAX){ (data, error) in
             if let error = error {
                 print("Error downloading image data: \(error)")
                 return
             }
             
             // 3
-            storageRef.metadata(completion: { (metadata, metadataErr) in
+            storageRef.getMetadata(completion: { (metadata, metadataErr) in
                 if let error = metadataErr {
                     print("Error downloading metadata: \(error)")
                     return
@@ -281,7 +281,7 @@ class ChatViewController: JSQMessagesViewController {
     
     func signOutPressed(sender: UIBarButtonItem) {
         do {
-            try FIRAuth.auth()!.signOut()
+            try Auth.auth().signOut()
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             let loginViewController = storyboard.instantiateViewController(withIdentifier: "login")
             present(loginViewController, animated: true, completion: nil)
@@ -304,7 +304,7 @@ class ChatViewController: JSQMessagesViewController {
         messageRef.keepSynced(true)
         // 1.
         let messageQuery = messageRef.queryLimited(toLast:25)
-        let connectedRef = FIRDatabase.database().reference(withPath: ".info/connected")
+        let connectedRef = Database.database().reference(withPath: ".info/connected")
         connectedRef.observe(.value, with: { snapshot in
             if snapshot.value as? Bool ?? false {
                 print("Connected")
@@ -442,7 +442,7 @@ extension ChatViewController: UIImagePickerControllerDelegate, UINavigationContr
 
                 
                 // 5
-                let path = "\(FIRAuth.auth()?.currentUser?.uid)/\(Int(Date.timeIntervalSinceReferenceDate * 1000))/\(photoReferenceUrl.lastPathComponent)"
+                let path = "\(Auth.auth().currentUser?.uid)/\(Int(Date.timeIntervalSinceReferenceDate * 1000))/\(photoReferenceUrl.lastPathComponent)"
                 do {
                     let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
                     
@@ -453,7 +453,7 @@ extension ChatViewController: UIImagePickerControllerDelegate, UINavigationContr
                     
                     
                     // 6
-                    self.storageRef.child(path).putFile(fileURL, metadata: nil) { (metadata, error) in
+                    self.storageRef.child(path).putFile(from:fileURL, metadata: nil) { (metadata, error) in
                         if let error = error {
                             print("Error uploading photo: \(error.localizedDescription)")
                             return
@@ -478,12 +478,12 @@ extension ChatViewController: UIImagePickerControllerDelegate, UINavigationContr
                 // 3
                 let imageData = UIImageJPEGRepresentation(image, 1.0)
                 // 4
-                let imagePath = FIRAuth.auth()!.currentUser!.uid + "/\(Int(Date.timeIntervalSinceReferenceDate * 1000)).jpg"
+                let imagePath = Auth.auth().currentUser!.uid + "/\(Int(Date.timeIntervalSinceReferenceDate * 1000)).jpg"
                 // 5
-                let metadata = FIRStorageMetadata()
+                let metadata = StorageMetadata()
                 metadata.contentType = "image/jpeg"
                 // 6
-                storageRef.child(imagePath).put(imageData!, metadata: metadata) { (metadata, error) in
+                storageRef.child(imagePath).putData(imageData!, metadata: metadata) { (metadata, error) in
                     if let error = error {
                         print("Error uploading photo: \(error)")
                         return

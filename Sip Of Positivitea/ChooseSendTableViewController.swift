@@ -26,11 +26,11 @@ class ChooseSendTableViewController: UITableViewController {
     private var groupsToSend : [String:Bool] = [:]
     private var sendToAll : Bool = false
 
-    private lazy var groupsRef: FIRDatabaseReference = FIRDatabase.database().reference().child("groups")
-    private lazy var contactsRef: FIRDatabaseReference = FIRDatabase.database().reference().child("users")
-    private lazy var conversationsRef: FIRDatabaseReference = FIRDatabase.database().reference().child("conversations")
-    private var contactsRefHandle: FIRDatabaseHandle?
-    private var groupsRefHandle: FIRDatabaseHandle?
+    private lazy var groupsRef: DatabaseReference = Database.database().reference().child("groups")
+    private lazy var contactsRef: DatabaseReference = Database.database().reference().child("users")
+    private lazy var conversationsRef: DatabaseReference = Database.database().reference().child("conversations")
+    private var contactsRefHandle: DatabaseHandle?
+    private var groupsRefHandle: DatabaseHandle?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -84,7 +84,7 @@ class ChooseSendTableViewController: UITableViewController {
                 let messageRef = userConvoRef.child("messages")
                 let itemRef = messageRef.childByAutoId() // 1
                 let messageItem = [ // 2
-                    "senderId":  (FIRAuth.auth()?.currentUser?.uid)!,
+                    "senderId":  (Auth.auth().currentUser?.uid)!,
                     "senderName": "Allynn",
                     "text": messageContents,
                     "date": [".sv": "timestamp"],
@@ -106,7 +106,7 @@ class ChooseSendTableViewController: UITableViewController {
                     let messageRef = userConvoRef.child("messages")
                     let itemRef = messageRef.childByAutoId() // 1
                     let messageItem = [ // 2
-                        "senderId":  (FIRAuth.auth()?.currentUser?.uid)!,
+                        "senderId":  (Auth.auth().currentUser?.uid)!,
                         "senderName": "Allynn",
                         "text": messageContents,
                         "date": [".sv": "timestamp"],

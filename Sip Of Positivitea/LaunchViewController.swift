@@ -12,10 +12,10 @@ import FirebaseAuth
 import FirebaseDatabase
 
 class LaunchViewController: UIViewController {
-    private lazy var usersRef: FIRDatabaseReference = FIRDatabase.database().reference().child("users")
-    private lazy var allynnRef: FIRDatabaseReference = FIRDatabase.database().reference().child("allynn")
-    private lazy var conversationsRef: FIRDatabaseReference = FIRDatabase.database().reference().child("conversations")
-    private var userRefHandle: FIRDatabaseHandle?
+    private lazy var usersRef: DatabaseReference = Database.database().reference().child("users")
+    private lazy var allynnRef: DatabaseReference = Database.database().reference().child("allynn")
+    private lazy var conversationsRef: DatabaseReference = Database.database().reference().child("conversations")
+    private var userRefHandle: DatabaseHandle?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,7 +32,7 @@ class LaunchViewController: UIViewController {
         self.view.addSubview(blurView)
         self.view.addSubview(loadingHolderView)
         let defaults = UserDefaults.standard
-        let curUser = FIRAuth.auth()?.currentUser
+        let curUser = Auth.auth().currentUser
         if (curUser != nil && defaults.string(forKey: "firstTimeOpen") != nil){
             // User is signed in.
             print("start current user: " + curUser!.email! )
@@ -40,7 +40,7 @@ class LaunchViewController: UIViewController {
             return
         } else if (defaults.string(forKey: "firstTimeOpen") == nil) {
             do {
-                try FIRAuth.auth()!.signOut()
+                try Auth.auth().signOut()
                 defaults.set("opened", forKey: "firstTimeOpen")
                 defaults.synchronize()
             } catch let signOutError as NSError {
@@ -62,7 +62,7 @@ class LaunchViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    func loginToApp(user: FIRUser) {
+    func loginToApp(user: User) {
         let uid = user.uid
         let userReference = self.usersRef.child(uid)
         userReference.observeSingleEvent(of: .value, with:{ (snapshot) in

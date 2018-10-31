@@ -50,6 +50,14 @@
 #import <UserNotifications/UserNotifications.h>
 #endif
 
+<<<<<<< HEAD
+=======
+
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wstrict-prototypes"
+#pragma clang diagnostic ignored "-Wnullability-completeness"
+
+>>>>>>> origin/master
 /* The action type associated to an OSNotificationAction object */
 typedef NS_ENUM(NSUInteger, OSNotificationActionType)  {
     OSNotificationActionTypeOpened,
@@ -87,12 +95,46 @@ typedef NS_ENUM(NSUInteger, OSNotificationDisplayType) {
 /* Unique Message Identifier */
 @property(readonly)NSString* notificationID;
 
+<<<<<<< HEAD
 /* Provide this key with a value of 1 to indicate that new content is available.
  Including this key and value means that when your app is launched in the background or resumed application:didReceiveRemoteNotification:fetchCompletionHandler: is called. */
 @property(readonly)BOOL contentAvailable;
 
 /* The badge assigned to the application icon */
 @property(readonly)NSUInteger badge;
+=======
+/* Unique Template Identifier */
+@property(readonly)NSString* templateID;
+
+/* Name of Template */
+@property(readonly)NSString* templateName;
+
+/* True when the key content-available is set to 1 in the aps payload.
+   content-available is used to wake your app when the payload is received.
+   See Apple's documenation for more details.
+  https://developer.apple.com/documentation/uikit/uiapplicationdelegate/1623013-application
+*/
+@property(readonly)BOOL contentAvailable;
+
+/* True when the key mutable-content is set to 1 in the aps payload.
+ mutable-content is used to wake your Notification Service Extension to modify a notification.
+ See Apple's documenation for more details.
+ https://developer.apple.com/documentation/usernotifications/unnotificationserviceextension
+ */
+@property(readonly)BOOL mutableContent;
+
+/*
+ Notification category key previously registered to display with.
+ This overrides OneSignal's actionButtons.
+ See Apple's documenation for more details.
+ https://developer.apple.com/library/content/documentation/NetworkingInternet/Conceptual/RemoteNotificationsPG/SupportingNotificationsinYourApp.html#//apple_ref/doc/uid/TP40008194-CH4-SW26
+*/
+@property(readonly)NSString* category;
+
+/* The badge assigned to the application icon */
+@property(readonly)NSUInteger badge;
+@property(readonly)NSInteger badgeIncrement;
+>>>>>>> origin/master
 
 /* The sound parameter passed to the notification
  By default set to UILocalNotificationDefaultSoundName */
@@ -121,6 +163,10 @@ typedef NS_ENUM(NSUInteger, OSNotificationDisplayType) {
 
 @end
 
+<<<<<<< HEAD
+=======
+// ## OneSignal OSNotification
+>>>>>>> origin/master
 @interface OSNotification : NSObject
 
 /* Notification Payload */
@@ -211,6 +257,7 @@ typedef NS_ENUM(NSInteger, OSNotificationPermission) {
 
 @end
 
+<<<<<<< HEAD
 @interface OSSubscriptionStateChanges : NSObject
 
 @property (readonly) OSSubscriptionState* to;
@@ -218,12 +265,39 @@ typedef NS_ENUM(NSInteger, OSNotificationPermission) {
 
 - (NSDictionary*)toDictionary;
 
+=======
+
+@interface OSEmailSubscriptionState : NSObject
+@property (readonly, nonatomic) NSString* emailUserId; // The new Email user ID
+@property (readonly, nonatomic) NSString *emailAddress;
+@property (readonly, nonatomic) BOOL subscribed;
+- (NSDictionary*)toDictionary;
+@end
+
+@interface OSSubscriptionStateChanges : NSObject
+@property (readonly) OSSubscriptionState* to;
+@property (readonly) OSSubscriptionState* from;
+- (NSDictionary*)toDictionary;
+@end
+
+@interface OSEmailSubscriptionStateChanges : NSObject
+@property (readonly) OSEmailSubscriptionState* to;
+@property (readonly) OSEmailSubscriptionState* from;
+- (NSDictionary*)toDictionary;
+>>>>>>> origin/master
 @end
 
 @protocol OSSubscriptionObserver <NSObject>
 - (void)onOSSubscriptionChanged:(OSSubscriptionStateChanges*)stateChanges;
 @end
 
+<<<<<<< HEAD
+=======
+@protocol OSEmailSubscriptionObserver <NSObject>
+- (void)onOSEmailSubscriptionChanged:(OSEmailSubscriptionStateChanges*)stateChanges;
+@end
+
+>>>>>>> origin/master
 
 
 // Permission+Subscription Classes
@@ -231,11 +305,19 @@ typedef NS_ENUM(NSInteger, OSNotificationPermission) {
 
 @property (readonly) OSPermissionState* permissionStatus;
 @property (readonly) OSSubscriptionState* subscriptionStatus;
+<<<<<<< HEAD
+=======
+@property (readonly) OSEmailSubscriptionState *emailSubscriptionStatus;
+>>>>>>> origin/master
 - (NSDictionary*)toDictionary;
 
 @end
 
 
+<<<<<<< HEAD
+=======
+typedef void (^OSWebOpenURLResultBlock)(BOOL shouldOpen);
+>>>>>>> origin/master
 
 typedef void (^OSResultSuccessBlock)(NSDictionary* result);
 typedef void (^OSFailureBlock)(NSError* error);
@@ -260,6 +342,12 @@ extern NSString * const kOSSettingsKeyInAppAlerts;
 /*Enable In-App display of Launch URLs*/
 extern NSString * const kOSSettingsKeyInAppLaunchURL;
 
+<<<<<<< HEAD
+=======
+/*Prompt user yes/no to open URL's from push notifications*/
+extern NSString * const kOSSSettingsKeyPromptBeforeOpeningPushURL;
+
+>>>>>>> origin/master
 /* iOS10 +
  Set notification's in-focus display option.
  Value must be an OSNotificationDisplayType enum
@@ -289,6 +377,14 @@ typedef NS_ENUM(NSUInteger, ONE_S_LOG_LEVEL) {
 + (id)initWithLaunchOptions:(NSDictionary*)launchOptions appId:(NSString*)appId handleNotificationAction:(OSHandleNotificationActionBlock)actionCallback settings:(NSDictionary*)settings;
 + (id)initWithLaunchOptions:(NSDictionary*)launchOptions appId:(NSString*)appId handleNotificationReceived:(OSHandleNotificationReceivedBlock)receivedCallback handleNotificationAction:(OSHandleNotificationActionBlock)actionCallback settings:(NSDictionary*)settings;
 
+<<<<<<< HEAD
+=======
+// - Privacy
++ (void)consentGranted:(BOOL)granted;
++ (BOOL)requiresUserPrivacyConsent; // tells your application if privacy consent is still needed from the current user
++ (void)setRequiresUserPrivacyConsent:(BOOL)required; //used by wrapper SDK's to require user privacy consent
+
+>>>>>>> origin/master
 @property (class) OSNotificationDisplayType inFocusDisplayType;
 
 + (NSString*)app_id;
@@ -316,10 +412,16 @@ typedef NS_ENUM(NSUInteger, ONE_S_LOG_LEVEL) {
 + (void)deleteTags:(NSArray*)keys onSuccess:(OSResultSuccessBlock)successBlock onFailure:(OSFailureBlock)failureBlock;
 + (void)deleteTags:(NSArray*)keys;
 + (void)deleteTagsWithJsonString:(NSString*)jsonString;
+<<<<<<< HEAD
 
 // Optional method that sends us the user's email as an anonymized hash so that we can better target and personalize notifications sent to that user across their devices.
 // Sends as MD5 and SHA1 of the provided email
 + (void)syncHashedEmail:(NSString*)email;
+=======
+// Optional method that sends us the user's email as an anonymized hash so that we can better target and personalize notifications sent to that user across their devices.
+// Sends as MD5 and SHA1 of the provided email
++ (void)syncHashedEmail:(NSString*)email __deprecated_msg("Please refer to our new Email methods/functionality such as setEmail(). This method will be removed in a future version of the OneSignal SDK");
+>>>>>>> origin/master
 
 // - Subscription and Permissions
 + (void)IdsAvailable:(OSIdsAvailableBlock)idsAvailableBlock __deprecated_msg("Please use getPermissionSubscriptionState or addSubscriptionObserver and addPermissionObserver instead.");
@@ -332,6 +434,12 @@ typedef NS_ENUM(NSUInteger, ONE_S_LOG_LEVEL) {
 + (void)addSubscriptionObserver:(NSObject<OSSubscriptionObserver>*)observer;
 + (void)removeSubscriptionObserver:(NSObject<OSSubscriptionObserver>*)observer;
 
+<<<<<<< HEAD
+=======
++ (void)addEmailSubscriptionObserver:(NSObject<OSEmailSubscriptionObserver>*)observer;
++ (void)removeEmailSubscriptionObserver:(NSObject<OSEmailSubscriptionObserver>*)observer;
+
+>>>>>>> origin/master
 + (void)setSubscription:(BOOL)enable;
 
 // - Posting Notification
@@ -355,4 +463,33 @@ typedef NS_ENUM(NSUInteger, ONE_S_LOG_LEVEL) {
 + (UNMutableNotificationContent*)didReceiveNotificationExtensionRequest:(UNNotificationRequest*)request withMutableNotificationContent:(UNMutableNotificationContent*)replacementContent;
 + (UNMutableNotificationContent*)serviceExtensionTimeWillExpireRequest:(UNNotificationRequest*)request withMutableNotificationContent:(UNMutableNotificationContent*)replacementContent;
 
+<<<<<<< HEAD
 @end
+=======
+// Email methods
+
+// Typedefs defining completion blocks for email & simultaneous HTTP requests
+typedef void (^OSEmailFailureBlock)(NSError* error);
+typedef void (^OSEmailSuccessBlock)();
+
+// Allows you to set the email for this user.
+// Email Auth Token is a (recommended) optional parameter that should *NOT* be generated on the client.
+// For security purposes, the emailAuthToken should be generated by your backend server.
+// If you do not have a backend server for your application, use the version of thge setEmail: method without an emailAuthToken parameter.
++ (void)setEmail:(NSString * _Nonnull)email withEmailAuthHashToken:(NSString * _Nullable)hashToken withSuccess:(OSEmailSuccessBlock _Nullable)successBlock withFailure:(OSEmailFailureBlock _Nullable)failureBlock;
+
+// Sets email without an authentication token
++ (void)setEmail:(NSString * _Nonnull)email withSuccess:(OSEmailSuccessBlock _Nullable)successBlock withFailure:(OSEmailFailureBlock _Nullable)failureBlock;
+
+// Logs the device out of the current email.
++ (void)logoutEmailWithSuccess:(OSEmailSuccessBlock _Nullable)successBlock withFailure:(OSEmailFailureBlock _Nullable)failureBlock;
+
+//convenience - no completion blocks
++ (void)logoutEmail;
++ (void)setEmail:(NSString * _Nonnull)email;
++ (void)setEmail:(NSString * _Nonnull)email withEmailAuthHashToken:(NSString * _Nullable)hashToken;
+
+@end
+
+#pragma clang diagnostic pop
+>>>>>>> origin/master

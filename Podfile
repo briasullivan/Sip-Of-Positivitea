@@ -10,7 +10,7 @@ target 'Sip Of Positivitea' do
   pod 'Firebase/Database'
   pod 'Firebase/Storage'
   pod 'JSQMessagesViewController' 
-  pod 'OneSignal', '>= 2.5.2', '< 3.0'
+  pod 'OneSignal', '>= 2.6.2', '< 3.0'
   pod 'Agrume', :git => 'https://github.com/JanGorman/Agrume.git'
   pod 'IQKeyboardManagerSwift', '4.0.10'
 
@@ -25,7 +25,7 @@ target 'Sip Of Positivitea' do
     inherit! :search_paths
     # Pods for testing
   end
- # target 'OneSignalNotificationServiceExtension' do
-  #  pod 'OneSignal', '>= 2.5.2', '< 3.0'
- # end
+#  target 'OneSignalNotificationServiceExtension' do
+#  pod 'OneSignal', '>= 2.6.2', '< 3.0'
+#  end
 end

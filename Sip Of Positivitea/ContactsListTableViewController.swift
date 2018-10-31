@@ -18,10 +18,10 @@ enum Section: Int {
 class ContactsListTableViewController: UITableViewController {
     private var groups : [Group] = []
     private var contacts : [Contact] = []
-    private lazy var groupsRef: FIRDatabaseReference = FIRDatabase.database().reference().child("groups")
-    private lazy var contactsRef: FIRDatabaseReference = FIRDatabase.database().reference().child("users")
-    private var contactsRefHandle: FIRDatabaseHandle?
-    private var groupsRefHandle: FIRDatabaseHandle?
+    private lazy var groupsRef: DatabaseReference = Database.database().reference().child("groups")
+    private lazy var contactsRef: DatabaseReference = Database.database().reference().child("users")
+    private var contactsRefHandle: DatabaseHandle?
+    private var groupsRefHandle: DatabaseHandle?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -175,7 +175,7 @@ class ContactsListTableViewController: UITableViewController {
 
     func signOut() {
         do {
-            try FIRAuth.auth()!.signOut()
+            try Auth.auth().signOut()
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             let loginViewController = storyboard.instantiateViewController(withIdentifier: "login")
             present(loginViewController, animated: true, completion: nil)
