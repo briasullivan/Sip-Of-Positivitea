@@ -1,6 +1,0 @@
-framework module Pods_Sip_Of_Positivitea {
-  umbrella header "Pods-Sip Of Positivitea-umbrella.h"
-
-  export *
-  module * { export * }
-}

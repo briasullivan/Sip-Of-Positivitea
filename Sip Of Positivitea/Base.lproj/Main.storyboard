@@ -549,6 +549,7 @@
                     <connections>
                         <segue destination="B2J-eA-e8f" kind="show" identifier="ShowComposeMessage" id="Q1v-cn-LUs"/>
                         <segue destination="fiD-aG-PII" kind="show" id="xeD-q6-fGk"/>
+                        <segue destination="4WK-w2-4iQ" kind="show" identifier="AddImage" id="jUI-55-Onn"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tug-td-UTO" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -621,6 +622,41 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dNE-fX-PQa" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2182" y="-1578"/>
+        </scene>
+        <!--Add Image View Controller-->
+        <scene sceneID="aue-qw-Iar">
+            <objects>
+                <viewController storyboardIdentifier="AddImage" id="4WK-w2-4iQ" customClass="AddImageViewController" customModule="Sip_Of_Positivitea" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="6AV-Ko-m4b"/>
+                        <viewControllerLayoutGuide type="bottom" id="Ua1-S5-g5U"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="oh1-Va-U7q">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kJh-ao-1iY">
+                                <rect key="frame" x="40" y="114" width="240" height="240"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RQK-u6-BAv">
+                                <rect key="frame" x="90" y="362" width="141" height="30"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                <state key="normal" title="Choose Photo"/>
+                                <connections>
+                                    <action selector="choosePhoto" destination="4WK-w2-4iQ" eventType="touchUpInside" id="UYa-Ow-YQk"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <outlet property="imageInput" destination="kJh-ao-1iY" id="HLU-p7-XKc"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ryC-eu-hCb" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3030" y="-1491.25"/>
         </scene>
     </scenes>
     <resources>

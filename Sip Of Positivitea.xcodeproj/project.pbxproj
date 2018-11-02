@@ -29,6 +29,7 @@
 		BC3240331F1965E700EA3EEB /* ChooseSendTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC3240321F1965E700EA3EEB /* ChooseSendTableViewController.swift */; };
 		BC3240351F19C83F00EA3EEB /* ContactTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC3240341F19C83F00EA3EEB /* ContactTableViewController.swift */; };
 		BC3240671F1D3C3000EA3EEB /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = BC3240661F1D3C3000EA3EEB /* GoogleService-Info.plist */; };
+		BC7729572189729100235F08 /* AddImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC7729562189729100235F08 /* AddImageViewController.swift */; };
 		BCADA9271EAD96E600680F1D /* MessageListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCADA9261EAD96E600680F1D /* MessageListTableViewController.swift */; };
 		BCADA9291EAD96F800680F1D /* ContactsListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCADA9281EAD96F800680F1D /* ContactsListTableViewController.swift */; };
 		BCADA92C1EAD9B1400680F1D /* Conversation.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCADA92B1EAD9B1400680F1D /* Conversation.swift */; };
@@ -106,6 +107,7 @@
 		BC3240341F19C83F00EA3EEB /* ContactTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactTableViewController.swift; sourceTree = "<group>"; };
 		BC3240361F19D5EC00EA3EEB /* Sip Of Positivitea.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Sip Of Positivitea.entitlements"; sourceTree = "<group>"; };
 		BC3240661F1D3C3000EA3EEB /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		BC7729562189729100235F08 /* AddImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddImageViewController.swift; sourceTree = "<group>"; };
 		BCADA9261EAD96E600680F1D /* MessageListTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageListTableViewController.swift; sourceTree = "<group>"; };
 		BCADA9281EAD96F800680F1D /* ContactsListTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactsListTableViewController.swift; sourceTree = "<group>"; };
 		BCADA92B1EAD9B1400680F1D /* Conversation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Conversation.swift; sourceTree = "<group>"; };
@@ -242,6 +244,7 @@
 				BC32402A1F11980700EA3EEB /* NewMessageTableViewController.swift */,
 				BC32402C1F15E70B00EA3EEB /* LaunchViewController.swift */,
 				BC3240301F195D3F00EA3EEB /* ComposeViewController.swift */,
+				BC7729562189729100235F08 /* AddImageViewController.swift */,
 				BC3240321F1965E700EA3EEB /* ChooseSendTableViewController.swift */,
 				BC3240341F19C83F00EA3EEB /* ContactTableViewController.swift */,
 			);
@@ -518,6 +521,7 @@
 				BC165BCF1EAD6A2E00A229A1 /* FirstViewController.swift in Sources */,
 				BC0B60E71EC1651700CF8774 /* ChatViewController.swift in Sources */,
 				BCADA9351EADB75000680F1D /* UserMessageViewController.swift in Sources */,
+				BC7729572189729100235F08 /* AddImageViewController.swift in Sources */,
 				BC165C011EAD73C200A229A1 /* SignUpViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

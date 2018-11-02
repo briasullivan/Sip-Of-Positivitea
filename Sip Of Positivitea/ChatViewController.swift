@@ -91,9 +91,6 @@ class ChatViewController: JSQMessagesViewController {
             title = "Inspiration from Allynn"
         }
         print("title = " + title!)
-        
-
-
     }
     
 

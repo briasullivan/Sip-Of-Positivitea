@@ -7,9 +7,10 @@
 //
 
 import UIKit
+import Photos
 
 class NewMessageTableViewController: UITableViewController {
-    private var newMassMessage:MassMessage!
+    private var newMassMessage:MassMessage! = MassMessage()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -63,7 +64,7 @@ class NewMessageTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if (indexPath.section == 0) {
             var cell = tableView.dequeueReusableCell(withIdentifier: "NewMessageCell", for: indexPath)
-            if (newMassMessage != nil) {
+            if (newMassMessage.messageContent != nil) {
                 cell.textLabel?.text = newMassMessage.messageContent
             } else {
                 cell.textLabel?.text = "Compose a new message"
@@ -71,6 +72,11 @@ class NewMessageTableViewController: UITableViewController {
             return cell
         } else {
             var cell = tableView.dequeueReusableCell(withIdentifier: "AddPhotosCell", for: indexPath)
+            if (newMassMessage.messageImage != nil) {
+                cell.textLabel?.text = "Image included*"
+            } else {
+                cell.textLabel?.text = "Add Image to Message"
+            }
             return cell
         }
     }
@@ -86,62 +92,41 @@ class NewMessageTableViewController: UITableViewController {
             }
             self.show(composeVC, sender: self)
         } else if (indexPath.section == 1) {
+            let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
+            let addImageVC = storyboard.instantiateViewController(withIdentifier: "AddImage") as! AddImageViewController
+            addImageVC.newMassMessage = newMassMessage
+            addImageVC.doneHandler = {(inputImageView:UIImageView?)-> Void in
+                self.didSetMassImage(input: inputImageView?.image)
+            }
+            self.show(addImageVC, sender: self)
         }
     }
     
     func didSetMassMessage(input: UITextView?) {
         if (input != nil && (input?.text.characters.count)! > 0) {
-            newMassMessage = MassMessage(messageContent: (input?.text)!)
+            newMassMessage.messageContent = (input?.text)!
             self.navigationItem.rightBarButtonItem?.isEnabled = true
         } else {
-            newMassMessage = nil
-            self.navigationItem.rightBarButtonItem?.isEnabled = false
+            newMassMessage.messageContent = nil
+            if (newMassMessage.messageImage == nil) {
+                self.navigationItem.rightBarButtonItem?.isEnabled = false
+            }
         }
         tableView.reloadData()
     }
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
+    
+    func didSetMassImage(input: UIImage?) {
+        if (input != nil) {
+            newMassMessage.messageImage = input!
+            self.navigationItem.rightBarButtonItem?.isEnabled = true
+        } else {
+            newMassMessage.messageImage = nil
+            if (newMassMessage.messageContent == nil){
+                self.navigationItem.rightBarButtonItem?.isEnabled = false
+            }
+        }
+        tableView.reloadData()
     }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
+
+

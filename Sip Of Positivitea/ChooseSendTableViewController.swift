@@ -10,6 +10,8 @@ import UIKit
 import OneSignal
 import Firebase
 import FirebaseDatabase
+import FirebaseStorage
+
 
 enum SendSection: Int {
     case sendToAll = 0
@@ -31,6 +33,8 @@ class ChooseSendTableViewController: UITableViewController {
     private lazy var conversationsRef: DatabaseReference = Database.database().reference().child("conversations")
     private var contactsRefHandle: DatabaseHandle?
     private var groupsRefHandle: DatabaseHandle?
+    private let imageURLNotSetKey = "NOTSET"
+    lazy var storageRef: StorageReference = Storage.storage().reference(forURL: "gs://sip-of-positivitea-e3b78.appspot.com")
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -69,8 +73,92 @@ class ChooseSendTableViewController: UITableViewController {
         self.view.addSubview(blurView)
         self.view.addSubview(loadingHolderView)
         
-        if (newMassMessage == nil || newMassMessage?.messageContent.characters.count == 0) {
+        if (newMassMessage == nil) {
+            loadingHolderView.removeFromSuperview()
+            blurView.removeFromSuperview()
+            self.navigationController?.popViewController(animated: true);
             return;
+        }
+        
+        if (newMassMessage?.messageImage != nil) {
+            var notificationIds : [String] = []
+
+            let imageData = UIImageJPEGRepresentation((newMassMessage?.messageImage)!, 1.0)
+            // 4
+            let imagePath = Auth.auth().currentUser!.uid + "/\(Int(Date.timeIntervalSinceReferenceDate * 1000)).jpg"
+            // 5
+            let metadata = StorageMetadata()
+            metadata.contentType = "image/jpeg"
+            // 6
+            storageRef.child(imagePath).putData(imageData!, metadata: metadata) { (metadata, error) in
+                if let error = error {
+                    print("Error uploading photo: \(error)")
+                    return
+                }
+                // 7
+                var url = self.storageRef.child((metadata?.path)!).description
+                if (self.sendToAll) {
+                    for contact in self.contacts {
+                        if (contact.phone_number == "4044443833") {
+                            continue;
+                        }
+                        if (contact.phone_number != "9518331903") {
+                            continue;
+                        }
+                        let conversationId = "Allynn"+contact.phone_number
+                        let userConvoRef = self.conversationsRef.child(conversationId)
+                        let messageRef = userConvoRef.child("messages")
+                        let itemRef = messageRef.childByAutoId() // 1
+                        let messageItem = [
+                            "photoURL": url,
+                            "senderId":  (Auth.auth().currentUser?.uid)!,
+                            "date": [".sv": "timestamp"]
+                            ] as [String : Any]
+                        
+                        if (contact.notification_id != "no_id") {
+                            notificationIds.append(contact.notification_id)
+                        }
+                        itemRef.setValue(messageItem)
+                        
+                    }
+                } else {
+                    if (self.contactsToSend.count > 0) {
+                        for phoneNumber in self.contactsToSend.keys {
+                            if (phoneNumber == "4044443833") {
+                                continue;
+                            }
+                            let conversationId = "Allynn"+phoneNumber
+                            let userConvoRef = self.conversationsRef.child(conversationId)
+                            let messageRef = userConvoRef.child("messages")
+                            let itemRef = messageRef.childByAutoId() // 1
+                            let messageItem = [
+                                "photoURL": url,
+                                "senderId":  (Auth.auth().currentUser?.uid)!,
+                                "date": [".sv": "timestamp"]
+                                ] as [String : Any]
+                            
+                            if (self.contactsToSend[phoneNumber]!.notification_id != "no_id") {
+                                notificationIds.append(self.contactsToSend[phoneNumber]!.notification_id)
+                            }
+                            itemRef.setValue(messageItem)
+                        }
+                    }
+                }
+                OneSignal.postNotification(["headings": ["en":"Allynn"], "contents": ["en": "New Image Message"], "include_player_ids": notificationIds])
+                if (self.newMassMessage?.messageContent == nil) {
+                    loadingHolderView.removeFromSuperview()
+                    blurView.removeFromSuperview()
+                    self.navigationController?.popViewController(animated: true);
+                    return
+                }
+            }
+        }
+        
+        if (newMassMessage?.messageContent == nil) {
+            loadingHolderView.removeFromSuperview()
+            blurView.removeFromSuperview()
+            self.navigationController?.popViewController(animated: true);
+            return
         }
         if (sendToAll) {
             var notificationIds : [String] = []
@@ -95,7 +183,9 @@ class ChooseSendTableViewController: UITableViewController {
                 itemRef.setValue(messageItem)
             }
             OneSignal.postNotification(["headings": ["en":"Allynn"], "contents": ["en": (newMassMessage?.messageContent)!], "include_player_ids": notificationIds])
-            
+            loadingHolderView.removeFromSuperview()
+            blurView.removeFromSuperview()
+            self.navigationController?.popViewController(animated: true);
         } else {
             var notificationIds : [String] = []
             if (contactsToSend.count > 0) {
@@ -118,15 +208,13 @@ class ChooseSendTableViewController: UITableViewController {
                 }
                 OneSignal.postNotification(["headings": ["en":"Allynn"], "contents": ["en": (newMassMessage?.messageContent)!], "include_player_ids": notificationIds])
             }
-            
+            loadingHolderView.removeFromSuperview()
+            blurView.removeFromSuperview()
+            self.navigationController?.popViewController(animated: true);
             if (groupsToSend.count > 0) {
                 
             }
         }
-        
-        loadingHolderView.removeFromSuperview()
-        blurView.removeFromSuperview()
-        self.navigationController?.popViewController(animated: true);
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
